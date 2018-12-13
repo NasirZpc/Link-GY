@@ -16,12 +16,14 @@
     "@nuxtjs/axios": "^5.0.0",
     "acorn-jsx": "^5.0.1",
     "cross-env": "^5.2.0",
+    "element-theme": "^2.0.1",
     "element-ui": "^2.4.6",
     "koa": "^2.5.2",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "element-theme-chalk": "^2.4.11",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-loader": "^2.0.0",

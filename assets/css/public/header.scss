@@ -1,0 +1,77 @@
+.m-header{
+    @at-root .el-header{
+        background: rgba(255,255,255,0.5);
+        height:90px;
+        box-shadow: 0px 0px 10px #eee;
+    }
+    width:1170px;
+    height:100%;
+    & .index-logo{
+        width:144px;
+        height:50px;
+        top:20px;
+    }
+    & .index-nav{
+        top:15px;
+        border-bottom:none;
+        li{
+            margin:0 10px;
+            .el-submenu__title,
+            a{
+                color:#000;
+                font-size: 18px;
+            }
+            &:hover{
+                .el-submenu__title,
+                a{
+                    color:#bb0068;
+                }
+            }
+        }
+    }
+}
+/*二级导航*/
+div.el-menu--horizontal{
+    box-shadow: 0px 0px 8px #666!important;
+    border-radius: 3px!important;
+    position: relative;
+    &:after{
+        content:'';
+        display: block;
+        width: 0;
+        height: 0;
+        vertical-align: middle;
+        border-top: 8px dashed;
+        border-top: 8px solid\9;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        transform: rotate(-180deg);
+        position: absolute;
+        right: 45%;
+        top: -5px;
+        bottom: 0;
+        color: #fff;
+        z-index: 99999;
+    }
+    ul.el-menu--popup{
+        min-width:140px!important;
+        margin-top:0!important;
+        li{
+            height:42px!important;
+            line-height: 42px!important;
+            a{
+                color:#333;
+                display: block;
+                font-size: 18px;
+                display: block;
+                text-align: center;
+            }
+            &:hover{
+                background: #ddd;
+                a{
+                    color:#bb0068!important;
+                }
+            }
+        }
+    }
+}
