@@ -28,7 +28,7 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/reset.css',
-    // 'element-ui/lib/theme-chalk/index.css',
+    'swiper/dist/css/swiper.css',
     '@/theme/index.css',
     '@/assets/css/main.css'
   ],
@@ -37,7 +37,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    {src: '@/plugins/element-ui', ssr: true},
+    {src: '@/plugins/swiper',ssr:true},
   ],
 
   /*

@@ -1,30 +1,37 @@
 .m-header{
     @at-root .el-header{
         background: rgba(255,255,255,0.5);
-        height:90px;
+        height:60px;
         box-shadow: 0px 0px 10px #eee;
+        position:fixed;
+        width:100%;
+        top:0;
+        left:0;
+        z-index: 100;
     }
     width:1170px;
     height:100%;
-    & .index-logo{
-        width:144px;
-        height:50px;
-        top:20px;
-    }
-    & .index-nav{
-        top:15px;
+    .index-nav{
         border-bottom:none;
+        background: none;
         li{
             margin:0 10px;
+            padding:0;
             .el-submenu__title,
             a{
+                display: block;
                 color:#000;
-                font-size: 18px;
+                font-size: 16px;
+                padding: 0 20px;
             }
             &:hover{
+                background: none!important;
                 .el-submenu__title,
                 a{
                     color:#bb0068;
+                }
+                .el-submenu__title:hover{
+                    background: none!important;
                 }
             }
         }
@@ -62,7 +69,7 @@ div.el-menu--horizontal{
             a{
                 color:#333;
                 display: block;
-                font-size: 18px;
+                font-size: 16px;
                 display: block;
                 text-align: center;
             }

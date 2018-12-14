@@ -1,10 +1,12 @@
 <template>
 <header class="m-header">
     <el-row :gutter="0">
-        <el-col :span="6" style="height:90px;">
-            <img class="index-logo rel" src="~/assets/img/logo.png">
+        <el-col :span="6" style="height:60px;">
+            <nuxt-link to="/">
+                <img class="index-logo rel" src="~/assets/img/logo.png">
+            </nuxt-link>
         </el-col>
-        <el-col :span="12" :offset="6" class="tr clearfix" style="height:90px;">
+        <el-col :span="12" :offset="6" class="tr clearfix" style="height:60px;">
             <el-menu class="el-menu-demo index-nav rel" mode="horizontal">
                 <el-menu-item index="1">
                     <nuxt-link to="/houseLists">房源</nuxt-link>

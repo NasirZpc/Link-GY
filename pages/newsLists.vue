@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt60">
         新闻
     </div>
 </template>
