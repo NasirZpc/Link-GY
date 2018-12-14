@@ -103,6 +103,9 @@ i{font-style: normal;}
 .pt20{
     padding-top: 20px;
 }
+.pt25{
+    padding-top: 25px;
+}
 .pt40{
     padding-top: 40px;
 }
@@ -111,6 +114,9 @@ i{font-style: normal;}
 }
 .pt100{
     padding-top:100px;
+}
+.pb40{
+    padding-bottom: 40px;
 }
 /*margin*/
 .mt100{

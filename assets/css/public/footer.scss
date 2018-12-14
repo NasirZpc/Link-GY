@@ -1,0 +1,37 @@
+.el-footer{
+    background: url(../../static/footer-bg.png) no-repeat;
+    background-size: 100% 100%;
+    .m-footer{
+        padding-top:120px;
+        .out-link{
+            .friend-link{
+                padding:15px 0;
+                border-bottom: 1px solid #d5d5d5;
+            }
+            a:hover,a:active,a:focus{
+                color:#d90068;
+            }
+        }
+        .footer-code{
+            li{
+                &:nth-of-type(1){
+                    margin-left:40px;
+                }
+            }
+            img{
+                width:145px;
+            }
+        }
+        .beian-wrap{
+            img{
+                width:25px;
+                height:25px;
+                margin-right:5px;
+                top:6px;
+            }
+            &:hover,&:active,&:focus{
+                color:#d90068;
+            }
+        }
+    }
+}
