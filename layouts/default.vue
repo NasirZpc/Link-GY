@@ -1,5 +1,4 @@
 <template>
-<div>
     <el-container class="layout-default">
         <el-header style="height:60px;">
             <my-header/>
@@ -11,7 +10,6 @@
             <my-footer/>
         </el-footer>
     </el-container>
-</div>
 </template>
 
 <script>

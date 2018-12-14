@@ -1,0 +1,52 @@
+.login-header{
+    padding:0 30px;
+    line-height: 60px;
+    a{
+        color:#d90068;
+        .el-icon-arrow-right{
+            font-size:20px;
+            top:2px;
+        }
+    }
+}
+.login-main{
+    background: url(../static/login.jpg) no-repeat;
+    background-size:cover;
+}
+.box-card{
+    left:50%;
+    margin-left:-250px;
+    top:220px;
+    width:500px;
+    .el-card__header{
+        a{
+            line-height:30px;
+        }
+    }
+    .el-card__header a,.forget-password{
+        &:hover,&:active,&:focus{
+            color:#d90068;
+        }
+    }
+    .login-btn{
+        width:460px;
+        margin:0 auto;
+    }
+    .verification {
+        vertical-align: middle;
+        transform: translate(-15px,0);
+        width: 102px;
+    }
+    #code {
+        font-size: 18px;
+        letter-spacing: 3px;
+        color: #053d84;
+        background: #f2f2f5;
+        margin-left: 30px;
+        line-height: 37px;
+        height: 40px;
+
+        width: 100px;
+        border-radius: 3px;
+    }
+}
