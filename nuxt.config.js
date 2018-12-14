@@ -7,11 +7,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Link公寓',
+    title: 'Link新界公寓',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Link公寓' }
+      { hid: 'description', name: 'description', content: 'Link新界公寓' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }

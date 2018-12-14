@@ -7,7 +7,7 @@
         <el-main>
             <nuxt class="m-main" />
         </el-main>
-        <el-footer>
+        <el-footer style="height:420px;">
             <my-footer/>
         </el-footer>
     </el-container>

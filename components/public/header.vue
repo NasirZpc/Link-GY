@@ -6,7 +6,7 @@
                 <img class="index-logo rel" src="~/assets/img/logo.png">
             </nuxt-link>
         </el-col>
-        <el-col :span="12" :offset="6" class="tr clearfix" style="height:60px;">
+        <el-col :span="11" :offset="7" class="tr clearfix" style="height:60px;">
             <el-menu class="el-menu-demo index-nav rel" mode="horizontal">
                 <el-menu-item index="1">
                     <nuxt-link to="/houseLists">房源</nuxt-link>
@@ -26,6 +26,12 @@
                         <nuxt-link to="/joinUs">加入我们</nuxt-link>
                     </el-menu-item>
                 </el-submenu>
+                <el-menu-item index="4">
+                    <nuxt-link to="/login">登录</nuxt-link>
+                </el-menu-item>
+                <el-menu-item index="5">
+                    <nuxt-link to="/register">注册</nuxt-link>
+                </el-menu-item>
             </el-menu>
         </el-col>
     </el-row>
