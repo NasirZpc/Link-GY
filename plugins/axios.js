@@ -1,19 +1,32 @@
 import Vue from 'vue'
 import qs from 'qs'
-import store from '../store/index'
-var vm = new Vue({})
 
+var vm = new Vue()
+
+var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+function generateMixed(n){
+    var res = "";
+    for(var i = 0; i < n ; i ++) {
+        var id = Math.ceil(Math.random()*35);
+        res += chars[id];
+    }
+    return res;
+}
 //axios配置
-export default function ({ $axios, redirect }) {
+export default function ({ $axios, redirect,app }) {
     $axios.onRequest(config => {
-        // console.log(store)
-        config.headers.token = '12333333'
-        config.headers.signature = '12333333'
-        config.headers.timestamp = '12333333'
-        config.headers.nonce = '12333333'
+        var cookies = config.headers.common.cookie.split('; ');
+        var Token  = '';
+        for(var i=0;i<cookies.length;i++){
+            if(cookies[i].split('=')[0] == 'linkToken'){
+                Token = cookies[i].split('=')[1]
+            }
+        }
+        config.headers.token = Token || generateMixed(32)
+        config.headers.signature = generateMixed(32)
+        config.headers.timestamp = generateMixed(32)
+        config.headers.nonce = generateMixed(32)
         if (config.method === 'post') {
-            // console.log(config.data)
-            // console.log(config.headers)
             config.data = qs.stringify(config.data)
         }
         if (process.browser) {

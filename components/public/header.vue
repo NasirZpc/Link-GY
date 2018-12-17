@@ -54,10 +54,7 @@ export default {
         return {
 
         }
-    },
-    created(){
-        console.log(this.$store.state)
-    },
+    }
 }
 </script>
 <style lang="scss">
