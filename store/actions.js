@@ -11,12 +11,14 @@ export default{
             }
             if (obj) {
                 const linkId =obj.linkId;
-                await app.$axios.post('/api/Member/QueryInfo',{
+                await app.$axios.post('/api/Member/QueryInfo',{//获取个人信息
                     AccountId:obj.linkId
                 }).then(res=>{
                     commit('SET_USERINFO',res.data.StatusCode===200?qs.parse(res.data.Data):'')
                 })
             }
+        }else{
+            commit('SET_USERINFO','')
         }
     },
 }

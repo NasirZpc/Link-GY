@@ -15,13 +15,15 @@ function generateMixed(n){
 //axios配置
 export default function ({ $axios, redirect,app }) {
     $axios.onRequest(config => {
-        var cookies = config.headers.common.cookie.split('; ');
         var Token  = '';
-        for(var i=0;i<cookies.length;i++){
-            if(cookies[i].split('=')[0] == 'linkToken'){
-                Token = cookies[i].split('=')[1]
+        try{
+            var cookies = config.headers.common.cookie.split('; ');
+            for(var i=0;i<cookies.length;i++){
+                if(cookies[i].split('=')[0] == 'linkToken'){
+                    Token = cookies[i].split('=')[1]
+                }
             }
-        }
+        }catch(e){}
         config.headers.token = Token || generateMixed(32)
         config.headers.signature = generateMixed(32)
         config.headers.timestamp = generateMixed(32)

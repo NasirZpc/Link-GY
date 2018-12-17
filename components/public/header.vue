@@ -32,7 +32,7 @@
                         <nuxt-link to="/userCenter">个人中心</nuxt-link>
                     </el-menu-item>
                     <el-menu-item index="4-2">
-                        <nuxt-link to="/exit">退出</nuxt-link>
+                        <a href="javascript:;" @click="logOut">退出</a>
                     </el-menu-item>
                 </el-submenu>
                 <template v-else>
@@ -50,9 +50,20 @@
 </template>
 <script>
 export default {
-    data(){
-        return {
-
+    methods:{
+        logOut(){
+            this.$confirm('是否退出?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                    type: 'warning'
+            }).then(() => {
+                this.$router.push('/exit')
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消'
+                });
+            });
         }
     }
 }

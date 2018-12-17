@@ -29,7 +29,7 @@
                             <nuxt-link class="CRed forget-password" to="/">忘记密码</nuxt-link>
                         </el-form-item>
                     </el-form>
-                    <el-button class="login-btn block" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                    <el-button class="login-btn block" type="primary" @click="submitForm('ruleForm')" :loading="btnLoading">登录</el-button>
                 </el-card>
             </div>
         </el-main>
@@ -73,6 +73,7 @@ export default {
 			}
 		};
         return {
+            btnLoading:false,
             ruleForm:{
                 tel:'',
                 password:'',
@@ -133,14 +134,16 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
+                    this.btnLoading = true
                     this.$axios.post('/api/Member/Login',{
                         Account:this.ruleForm.tel,
                         Password:CryptoJS.MD5(this.ruleForm.password).toString(),
                         VerifyCode:this.ruleForm.vcode
                     }).then(({status,data})=>{
-                        console.log(data.Data)
+
                         this.$cookies.set('linkToken',data.Data.Token)
                         this.$cookies.set('linkId',data.Data.AccountId)
+                        this.btnLoading = false
                         this.$message({
                             type: 'success',
                             message: '登录成功！'
@@ -148,9 +151,13 @@ export default {
                         setTimeout(()=>{
                             location.href='/'
                         },500)
-
                     })
                 } else {
+                    this.btnLoading = false
+                    this.$message({
+                        type: 'error',
+                        message: '登录失败请重新登录！'
+                    });
                     console.log('error submit!!');
                     return false;
                 }
@@ -160,13 +167,7 @@ export default {
     created() {
 		this.createCode();
 
-	},
-    mounted(){
-        var linkToken = this.$cookies.get('linkToken');
-        var linkId = this.$cookies.get('linkId')
-        console.log(linkToken)
-        console.log(linkId)
-    }
+	}
 }
 </script>
 <style lang="scss">

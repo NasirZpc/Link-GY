@@ -1,5 +1,6 @@
 export default function({store,error,redirect,req}){
-    if(!store.user){
+    console.log(store.getters.userinfo)
+    if(!store.getters.userinfo){
         console.log('未登录')
         redirect('/login')
     }else{
