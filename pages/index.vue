@@ -157,7 +157,7 @@ export default {
         return {
             banners:[]
         }
-    }
+    },
 }
 </script>
 <style lang="scss" scoped>

@@ -26,21 +26,39 @@
                         <nuxt-link to="/joinUs">加入我们</nuxt-link>
                     </el-menu-item>
                 </el-submenu>
-                <el-menu-item index="4">
-                    <nuxt-link to="/login">登录</nuxt-link>
-                </el-menu-item>
-                <el-menu-item index="5">
-                    <nuxt-link to="/register">注册</nuxt-link>
-                </el-menu-item>
+                <el-submenu index="4" v-if="$store.state.userinfo">
+                    <template slot="title" class="second-nav">您好，{{$store.state.userinfo.Name}}</template>
+                    <el-menu-item index="4-1">
+                        <nuxt-link to="/userCenter">个人中心</nuxt-link>
+                    </el-menu-item>
+                    <el-menu-item index="4-2">
+                        <nuxt-link to="/exit">退出</nuxt-link>
+                    </el-menu-item>
+                </el-submenu>
+                <template v-else>
+                    <el-menu-item index="4">
+                        <nuxt-link to="/login">登录</nuxt-link>
+                    </el-menu-item>
+                    <el-menu-item index="5">
+                        <nuxt-link to="/register">注册</nuxt-link>
+                    </el-menu-item>
+                </template>
             </el-menu>
         </el-col>
     </el-row>
 </header>
 </template>
 <script>
-    export default {
+export default {
+    data(){
+        return {
 
-    }
+        }
+    },
+    created(){
+        console.log(this.$store.state)
+    },
+}
 </script>
 <style lang="scss">
 @import "@/assets/css/public/header.scss";

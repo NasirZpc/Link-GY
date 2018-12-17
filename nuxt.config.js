@@ -37,7 +37,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src:'~plugins/axios' },
     {src: '@/plugins/element-ui', ssr: true},
+    {src: '@/plugins/vue-cookies', ssr: true},
     {src: '@/plugins/swiper',ssr:true},
   ],
 
@@ -46,7 +48,11 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
+  ],
+  proxy: [
+      ['/api', { target: 'http://api.linkxinjie.com'}]
   ],
   /*
   ** Axios module configuration

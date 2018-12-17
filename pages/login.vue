@@ -37,6 +37,8 @@
 </template>
 <script>
 var code; //在全局定义验证码
+import CryptoJS from 'crypto-js'
+import qs from 'qs'
 export default {
     layout: 'blank',
     data(){
@@ -131,7 +133,23 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert('submit!');
+                    this.$axios.post('/api/Member/Login',{
+                        Account:this.ruleForm.tel,
+                        Password:CryptoJS.MD5(this.ruleForm.password).toString(),
+                        VerifyCode:this.ruleForm.vcode
+                    }).then(({status,data})=>{
+                        console.log(data.Data)
+                        this.$cookies.set('linkToken',data.Data.Token)
+                        this.$cookies.set('linkId',data.Data.AccountId)
+                        this.$message({
+                            type: 'success',
+                            message: '登录成功！'
+                        });
+                        setTimeout(()=>{
+                            location.href='/'
+                        },500)
+
+                    })
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -141,7 +159,14 @@ export default {
     },
     created() {
 		this.createCode();
-	}
+
+	},
+    mounted(){
+        var linkToken = this.$cookies.get('linkToken');
+        var linkId = this.$cookies.get('linkId')
+        console.log(linkToken)
+        console.log(linkId)
+    }
 }
 </script>
 <style lang="scss">
