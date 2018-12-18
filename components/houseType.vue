@@ -29,7 +29,7 @@
         <div v-loading="loading">
             <p class="noDataText tc fs16 CRed pt40" v-show='list.length == 0'>无数据!&nbsp;&nbsp;-_-!!!</p>
             <ul class="house-type-lists">
-                <li v-for="(item,index) in list" :key="index">
+                <li v-for="(item,index) in list" :key="index" class="rel">
                     <nuxt-link :to="`/houseDetail/${item.Id}`" class="clearfix">
                         <img :src="item.MainPic " class="fl" :alt="item.FullHead">
                         <div class="fl">
@@ -46,11 +46,11 @@
                                 <span>{{item.Area}}m²</span>
                             </p>
                         </div>
-                        <div class="fr">
-                            <p class="CRed fs18 mb20">¥{{item.MinPrice}}月起</p>
-                            <el-button type="primary">预约看房</el-button>
-                        </div>
                     </nuxt-link>
+                    <div class="abs look-house-wrap">
+                        <p class="CRed fs18 mb10">¥{{item.MinPrice}}元/月起</p>
+                        <el-button type="primary" @click="lookHouseFunc(item.Id)">预约看房</el-button>
+                    </div>
                 </li>
             </ul>
             <!-- 工具条 -->
@@ -62,9 +62,39 @@
                 :total="listsTotal">
             </el-pagination>
         </div>
+        <!-- 预约看房 -->
+        <el-dialog
+        title="预约看房"
+        :visible.sync="dialogReservation"
+        width="500px">
+            <el-form :model="ReservationForm" label-width="100px" :rules="rules" ref="ReservationForm">
+                <el-form-item label="联系人"  prop="ContactName">
+                    <el-input v-model="ReservationForm.ContactName" auto-complete="off" placeholder="请输入您的姓名"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号码" prop="ContactPhone">
+                    <el-input v-model="ReservationForm.ContactPhone" auto-complete="off" placeholder="请输入手机号码" maxlength='11'></el-input>
+                </el-form-item>
+                <el-form-item label="手机验证码" prop="ContactVerifyCode">
+                    <el-input v-model="ReservationForm.ContactVerifyCode" auto-complete="off" placeholder="请输入验证码" maxlength="6" style="width:200px;"></el-input>
+                    <el-button type="primary" :disabled="disabled" @click="sendcode">{{getBtnTxt}}</el-button>
+                </el-form-item>
+                <el-form-item label="看房时间" prop="ExpectedDate">
+                    <el-date-picker v-model="ReservationForm.ExpectedDate" auto-complete="off" type="datetime" placeholder="请选择看房时间" :picker-options="pickerOptions"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="备注" prop="Description">
+                    <el-input type="textarea" v-model="ReservationForm.Description" auto-complete="off" placeholder="备注"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="cancelReservation('ReservationForm')">取 消</el-button>
+                <el-button type="primary" @click="Reservation('ReservationForm')" :loading="btnLoading">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 <script>
+import moment from 'moment'
+import CryptoJS from 'crypto-js'
 export default{
     props:{
         regionScreen:{
@@ -85,7 +115,7 @@ export default{
                 return {}
             }
         },
-        houseId:{
+        villageId:{
             type:String,
             default:()=>{
                 return {}
@@ -93,13 +123,51 @@ export default{
         }
     },
     data() {
+        var validatePhoneNum = (rule, value, callback) => {
+			let reg = /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+			if (value === '') {
+				callback(new Error('手机号码不能为空'));
+			} else if (!reg.test(value)) {
+				callback(new Error('请输入正确的手机号码'));
+			}else if(this.inputPhone!= ''&& value!= this.inputPhone){
+                callback(new Error('请输入正确的手机号码'));
+            } else {
+				callback();
+			}
+		};
+		var validateValidateCode = (rule, value, callback) => {
+			let PhoneNum = this.ReservationForm.ContactPhone
+			let reg = /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+			if (value === '') {
+				callback(new Error('手机验证码不能为空'));
+			} else if (!reg.test(PhoneNum)) {
+				callback(new Error('请输入正确的手机号码'));
+			} else if(CryptoJS.MD5(value).toString()!== this.SMCode){
+				callback(new Error('请重输入正确的验证码'));
+			}else {
+				callback();
+			}
+		};
+        var validateValidate = (rule,value,callback) => {
+            var nowTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss")//本地当前时间
+            nowTime = Date.parse(nowTime.replace(/-/,"/")) - 5000
+            var selTime = moment(new Date(value)).format("YYYY-MM-DD hh:mm:ss")//选房的时间
+            selTime = Date.parse(selTime.replace(/-/,"/"))
+            if(value === ''){
+                callback(new Error('预约看房时间不能为空'));
+            }else if(nowTime>=selTime){
+                callback(new Error('您所选的时间不能看房，请重新选择看房时间'));
+            }else{
+                callback()
+            }
+        };
         return {
             loading:false,
             // regionScreen: [],
             regionVal: '',
 
             // villageScreen[],
-            villageVal:this.houseId || '',
+            villageVal:this.villageId || '',
 
             rentScreen:[
                 {
@@ -137,7 +205,44 @@ export default{
             page : 1,
             pageSize : 10,
             list:this.listsData.Rows,
-            listsTotal:this.listsData.Records
+            listsTotal:this.listsData.Records,
+
+            //预约房间
+            pickerOptions: {
+                disabledDate(time) {
+                    return time.getTime() < Date.now() - 8.64e7;
+                }
+            },
+            houseId:'',
+            dialogReservation :false,
+            ReservationForm:{
+                ContactName:'',//联系人姓名
+                ContactPhone:'',//手机号码
+                ContactVerifyCode:'',//输入的验证码
+                ExpectedDate:'',//预约时间
+                Description:'',//附加说明
+            },
+            time: 0,
+            getBtnTxt: "免费获取验证码",
+            SMCode:'',//获取的验证码
+            disabled: false,
+            btnLoading:false,
+            inputPhone:'',
+
+            rules: {
+                ContactName: [
+                    { required: true, message: '请输入您的姓名', trigger: 'blur' },
+                ],
+                ContactPhone:[
+                    {required:true,validator: validatePhoneNum, trigger: 'blur'},
+                ],
+                ContactVerifyCode:[
+                    {required:true,validator: validateValidateCode, trigger: 'blur'},
+                ],
+                ExpectedDate:[
+                    {type:'date',required:true,validator: validateValidate, trigger: 'change'},
+                ],
+            },
         }
     },
     methods:{
@@ -182,7 +287,6 @@ export default{
                         }else{
                             this.list = response.data.Data.Rows
                         }
-                        console.log(response.data.Data.Total)
                         this.listsTotal = response.data.Data.Records
                     break;
                 }
@@ -190,10 +294,124 @@ export default{
             }).catch( error=> {
                 this.$message.error(error);
             });
-        }
-    },
-    created(){
-        console.log(this.listsData)
+        },
+        //预约看房
+        lookHouseFunc(id){
+            this.houseId = id
+            this.dialogReservation = true
+        },
+        Reservation(formName){
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.btnLoading = true
+                    var Type = '0'
+                    var AccountId
+                    if(this.$store.getters.userinfo){
+                        Type = '1'
+                        AccountId = this.$store.getters.userinfo.AccountId
+                    }
+                    var params = {
+                        Type :Type,
+                        AccountId : AccountId,
+                        Category : '2',
+                        RoomId : this.houseId,
+                        ContactName : this.ReservationForm.ContactName,//联系人姓名
+                        ContactPhone : this.ReservationForm.ContactPhone,//手机号码
+                        ExpectTime : this.ReservationForm.ExpectedDate,//预约时间
+                        Description : this.ReservationForm.Description,//附加说明
+                    }
+                    this.$axios.post(`/api/PStruct/Prospectiveapplication`,params).then(res=> {
+                        this.btnLoading = false
+                        this.dialogReservation = false
+                        this.time = 0;
+                        this.getBtnTxt = "获取验证码";
+                        this.disabled = false;
+                        this.timer()
+                        this.$refs[formName].resetFields();
+                        if(res.data.StatusCode == 200){
+                            this.$message.success('预约看房成功')
+                        }else{
+                            this.$message.error(res.data.Info)
+                        }
+
+                    }).catch(error => {
+                        this.btnLoading = false
+                        this.$message.error(error)
+                    })
+                } else {
+                    this.$message.error('表单请填写完整！')
+                    return false;
+                }
+            });
+        },
+        sendcode() {
+            var reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+            //var url="/nptOfficialWebsite/apply/sendSms?mobile="+this.registerForm.phone;
+            if (this.ReservationForm.ContactPhone == '') {
+                this.$message({
+                    type: 'error',
+                    message: '请输入手机号码'
+                });
+            } else if (!reg.test(this.ReservationForm.ContactPhone)) {
+                this.$message({
+                    type: 'error',
+                    message: '手机格式不正确'
+                });
+            } else {
+                let params = {
+                    Type: 7,
+                    PhoneNum: this.ReservationForm.ContactPhone
+                }
+                this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
+                    var errorText = response.Info;
+                    switch (response.data.StatusCode) {
+                        case 200:
+                            this.$message({
+                                type: 'success',
+                                message: '短信验证码发送成功，请注意查收！'
+                            });
+                            this.inputPhone = response.data.Data.PhoneNum
+                            this.SMCode = response.data.Data.RegisterCode.toLowerCase();
+                            this.time = 60;
+                            this.disabled = true;
+                            this.timer();
+                        break;
+                        case 500:
+                            this.$message({
+                                type: 'error',
+                                message: errorText
+                            });
+                            this.time = 0;
+                            this.getBtnTxt = "获取验证码";
+                            this.disabled = false;
+                        break;
+                        default:
+                            this.$message({
+                                type: 'error',
+                                message: '短信验证码发送失败！'
+                            });
+                            this.time = 0;
+                            this.getBtnTxt = "获取验证码";
+                            this.disabled = false;
+                    }
+                })
+            }
+        },
+        timer() {
+            if (this.time > 0) {
+                this.time--;
+                this.getBtnTxt = this.time + "s后重新获取";
+                setTimeout(this.timer, 1000);
+            } else {
+                this.time = 0;
+                this.getBtnTxt = "获取验证码";
+                this.disabled = false;
+            }
+        },
+        cancelReservation(formName){
+            this.$refs[formName].resetFields();
+            this.dialogReservation = false
+        },
     }
 }
 </script>

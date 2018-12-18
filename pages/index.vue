@@ -27,8 +27,8 @@
                 <div class="swiper-button-prev"></div>
             </div>
             <div class="search-wrap abs bg-white clearfix">
-                <input placeholder="请输入相关门店" class="fs16 fl">
-                <el-button type="primary" class="fl fs16">搜索</el-button>
+                <input placeholder="请输入相关门店" class="fs16 fl" v-model="indexSearch">
+                <el-button type="primary" class="fl fs16" @click="indexSearchFunc">搜索</el-button>
             </div>
         </div>
         <div class="index-content pt100 wrapper">
@@ -127,6 +127,7 @@ export default {
                     prevEl: '.swiper-button-prev',
                 },
             },
+            indexSearch:'',
             storeLists:[],
             swiperOption2:{
                 slidesPerView: 3,
@@ -157,6 +158,23 @@ export default {
         let news = newsRes.data.Data.Rows
         return {banners,storeLists,teamwork,news}
     },
+    methods:{
+        indexSearchFunc(){
+            if(this.indexSearch !="" && !this.isNull(this.indexSearch)){
+                this.$router.push({path:'/houseLists',query: {search: this.indexSearch}})
+            }else{
+                this.$message({
+                    message: '请输入关键字',
+                    type: 'warning'
+                });
+            }
+        },
+        isNull( str ){
+            var regu = "^[ ]+$";
+            var re = new RegExp(regu);
+            return re.test(str);
+        },
+    }
 }
 </script>
 <style lang="scss" scoped>

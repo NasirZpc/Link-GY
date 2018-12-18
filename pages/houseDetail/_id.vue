@@ -73,7 +73,7 @@
                 <el-form-item label="看房时间" prop="ExpectedDate">
                     <el-date-picker v-model="ReservationForm.ExpectedDate" auto-complete="off" type="datetime" placeholder="请选择看房时间" :picker-options="pickerOptions"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="备注">
+                <el-form-item label="备注" prop="Description">
                     <el-input type="textarea" v-model="ReservationForm.Description" auto-complete="off" placeholder="备注"></el-input>
                 </el-form-item>
             </el-form>
@@ -243,7 +243,6 @@ export default{
 		};
         var validateValidate = (rule,value,callback) => {
             var nowTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss")//本地当前时间
-            console.log(nowTime)
             nowTime = Date.parse(nowTime.replace(/-/,"/")) - 5000
             var selTime = moment(new Date(value)).format("YYYY-MM-DD hh:mm:ss")//选房的时间
             selTime = Date.parse(selTime.replace(/-/,"/"))
@@ -334,19 +333,17 @@ export default{
                         Description : this.ReservationForm.Description,//附加说明
                     }
                     this.$axios.post(`/api/PStruct/Prospectiveapplication`,params).then(res=> {
+                        this.btnLoading = false
+                        this.dialogReservation = false
+                        this.time = 0;
+                        this.getBtnTxt = "获取验证码";
+                        this.disabled = false;
+                        this.timer()
+                        this.$refs[formName].resetFields();
                         if(res.data.StatusCode == 200){
-                            this.btnLoading = false
-                            this.dialogReservation = false
-                            this.disable = false
-                            this.time = 0;
-                            this.getBtnTxt = "获取验证码";
-                            this.disabled = false;
-                            this.timer()
                             this.$message.success('预约看房成功')
-                            this.$refs[formName].resetFields();
                         }else{
-                            this.btnLoading = false
-                            this.$message.error(res.Info)
+                            this.$message.error(res.data.Info)
                         }
                     }).catch(error => {
                         this.btnLoading = false
@@ -377,7 +374,6 @@ export default{
                     PhoneNum: this.ReservationForm.ContactPhone
                 }
                 this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
-                    console.log(response.data.Data)
                     var errorText = response.Info;
                     switch (response.data.StatusCode) {
                         case 200:

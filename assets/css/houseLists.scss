@@ -79,6 +79,14 @@
                 &:last-child{
                     border:none;
                 }
+                .look-house-wrap{
+                    right:0;
+                    top:0;
+                    .el-button{
+                        width:120px;
+                        height:45px;
+                    }
+                }
             }
         }
     }
