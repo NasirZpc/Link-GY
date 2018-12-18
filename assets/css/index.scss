@@ -27,13 +27,18 @@
             z-index: 100;
             border-radius: 7px;
             overflow: hidden;
-            input{
+            .el-input{
                 width:435px;
                 padding-left: 27px;
                 border:none;
                 outline: none;
                 line-height: 80px;
                 height:100%;
+                input.el-input__inner{
+                    display: block;
+                    height:80px;
+                    border:none!important;
+                }
             }
             .el-button{
                 width:100px;

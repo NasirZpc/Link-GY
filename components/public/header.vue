@@ -20,7 +20,7 @@
                 <el-submenu index="3">
                     <template slot="title" class="second-nav">关于我们</template>
                     <el-menu-item index="3-1">
-                        <nuxt-link to="/brands">品牌介绍</nuxt-link>
+                        <nuxt-link to="/brand">品牌介绍</nuxt-link>
                     </el-menu-item>
                     <el-menu-item index="3-2">
                         <nuxt-link to="/teamwork">合作联系</nuxt-link>

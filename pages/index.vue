@@ -27,7 +27,7 @@
                 <div class="swiper-button-prev"></div>
             </div>
             <div class="search-wrap abs bg-white clearfix">
-                <input placeholder="请输入相关门店" class="fs16 fl" v-model="indexSearch">
+                <el-input placeholder="请输入相关门店" class="fs16 fl" v-model="indexSearch" clearable></el-input>
                 <el-button type="primary" class="fl fs16" @click="indexSearchFunc">搜索</el-button>
             </div>
         </div>
@@ -101,7 +101,7 @@
             <p class="fs24 bold pt100">新闻</p>
             <ul class="pt40 store-introduct clearfix news-lists">
                 <li class="fl bg-white" v-for="(item,index) in news" :key="index">
-                    <nuxt-link to="/">
+                    <nuxt-link :to="`/newsDetail/${item.Id}`">
                         <img :src="item.MainPic">
                         <div class="">
                             <p class="C0 fs18 tc ellipsis">{{item.FullHead}}</p>
@@ -110,7 +110,7 @@
                     </nuxt-link>
                 </li>
             </ul>
-            <nuxt-link to="/" class="more-news-btn tc">
+            <nuxt-link to="/newsLists" class="more-news-btn tc">
                 <el-button type="primary" class="fs16">MORE</el-button>
             </nuxt-link>
         </div>
@@ -177,6 +177,6 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/css/index.scss";
 </style>

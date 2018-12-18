@@ -11,7 +11,7 @@
                 <li v-for="(item,index) in list" :key="index">
                     <nuxt-link :to="`/storeDetail/${item.PropertyId}`" class="clearfix">
                         <img :src="item.MainPic " class="fl" :alt="item.FullHead">
-                        <div class="fr">
+                        <div class="fl">
                             <p class="fs20 C0">{{item.Name}}</p>
                             <p class="C80 fs16 pt15">
                                 <i class="el-icon-location-outline mr10"></i>
@@ -59,6 +59,12 @@ export default{
                 return {}
             }
         },
+        searchVal:{
+            type:String,
+            default:()=>{
+                return {}
+            }
+        },
     },
     data(){
         return {
@@ -66,7 +72,7 @@ export default{
             page : 1,
             pageSize : 10,
             AreaId:'',
-            list:this.listsData.Rows,
+            list:this.listsData.Rows || [],
             listsTotal:this.listsData.Records
         }
     },
@@ -100,7 +106,7 @@ export default{
             var params = {
                 QueryJson:{
                     // Type: '1',
-                    KeyWord : '',
+                    KeyWord : this.searchVal,
                     AreaId:this.AreaId,
                     RoomState:1,
                 },

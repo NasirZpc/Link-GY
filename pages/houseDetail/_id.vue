@@ -106,6 +106,11 @@ export default{
     components: {
         MapCom
     },
+    head() {
+        return {
+            title: this.detail.BaseInfo.BName + this.detail.BaseInfo.Name
+        }
+    },
     async asyncData({app}){
         let [detailRes] = await Promise.all([
             app.$axios.post(`api/PStruct/QueryRoomTypeDetail`,{Id:app.context.route.params.id}),//详情
@@ -458,11 +463,13 @@ ul.house-config-lists{
         >i.iconfont{
             font-size: 60px;
         }
+        h4{
+            padding-top:20px;
+        }
         &.CRed{
             color:#bb0068;
             h4{
                 color:#bb0068;
-                padding-top:20px;
             }
         }
         &:nth-of-type(7n){

@@ -68,6 +68,11 @@ export default{
     components: {
         MapCom
     },
+    head() {
+        return {
+            title: this.detail.BaseInfo.Name
+        }
+    },
     async asyncData({app}){
         let [detailRes,listsRes] = await Promise.all([
             app.$axios.post(`/api/PStruct/QueryPStructDetail`,{Id:app.context.route.params.id}),//详情

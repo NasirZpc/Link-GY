@@ -65,6 +65,11 @@
 <script>
 export default {
     layout: 'blank',
+    head() {
+        return {
+            title: '注册'
+        }
+    },
     data() {
 		var validateRealName = (rule, value, callback) => {
 			if (value === '') {

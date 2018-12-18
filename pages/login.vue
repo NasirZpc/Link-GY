@@ -42,6 +42,11 @@ import CryptoJS from 'crypto-js'
 import qs from 'qs'
 export default {
     layout: 'blank',
+    head() {
+        return {
+            title: '登录'
+        }
+    },
     data(){
         var validateAccount = (rule, value, callback) => {
 			let regPhoneNum = /^((13|14|15|17|18)[0-9]{1}\d{8})$/;

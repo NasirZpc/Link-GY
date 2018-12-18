@@ -38,8 +38,9 @@
                         width:450px;
                         height:285px;
                         border-radius:10px;
+                        margin-right:50px;
                     }
-                    >div.fr{
+                    >div.fl{
                         width:390px;
                         padding-top:10px;
                     }
@@ -57,36 +58,40 @@
                 margin-right:20px;
             }
         }
-        .house-type-lists{
-            li{
-                border-bottom:1px solid #dfdfdf;
-                a{
-                    margin:40px 0;
-                    display: block;
-                    img{
-                        width:350px;
-                        height:195px;
-                        border-radius:10px;
-                        margin-right:50px;
-                    }
-                    >div{
-                        padding-top:50px;
-                        &.fl{
-                            width:300px;
-                        }
-                    }
+    }
+}
+.house-type-lists{
+    li{
+        border-bottom:1px solid #dfdfdf;
+        a{
+            margin:40px 0;
+            display: block;
+            img{
+                width:350px;
+                height:195px;
+                border-radius:10px;
+                margin-right:50px;
+            }
+            >div{
+                padding-top:50px;
+                &.fl{
+                    width:300px;
                 }
-                &:last-child{
-                    border:none;
+                &.w-wrapper2{
+                    padding-top: 30px;
+                    width:750px;
                 }
-                .look-house-wrap{
-                    right:0;
-                    top:0;
-                    .el-button{
-                        width:120px;
-                        height:45px;
-                    }
-                }
+            }
+        }
+        &:last-child{
+            border:none;
+        }
+        .look-house-wrap{
+            right:0;
+            top:0;
+            .el-button{
+                width:120px;
+                height:45px;
             }
         }
     }
