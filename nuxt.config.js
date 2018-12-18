@@ -15,6 +15,11 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }
+    ],
+    script:[
+        {
+            src:"http://api.map.baidu.com/api?v=2.0&ak=UsFRyBiu3FKHk2WAlT5j2WFqHc2lUB3i&callback=init"
+        }
     ]
   },
 

@@ -6,7 +6,7 @@
         </ul>
         <div class="pt40 pb40">
             <house-store v-if="isActive" :screen-data="regionScreen" :lists-data="villageLists" />
-            <house-type v-else :region-screen="regionScreen" :village-screen="screenVillageLists" :lists-data="houseTypeLists"/>
+            <house-type v-else :region-screen="regionScreen" :village-screen="screenVillageLists" :lists-data="houseTypeLists" :house-id="houseTypeId"/>
         </div>
     </section>
 </template>
@@ -21,6 +21,7 @@ export default {
     data(){
         return {
             isActive:true,
+            houseTypeId:'',
             screenVillageLists:[],//社区数据筛选列表
             villageLists:{},//社区数据列表
 
@@ -30,11 +31,18 @@ export default {
         }
     },
     async asyncData ({app}) {
+        console.log(app.context.route)
+        var houseTypeId = ''
+        var isActive = true;
+        if(app.context.route.query.id){
+            houseTypeId = app.context.route.query.id;
+            isActive = false
+        }
         let [screenVillageListsRes,villageListsRes,regionScreenRes,houseTypeListsRes] = await Promise.all([
                 app.$axios.post(`/api/PStruct/QueryToCPStruct`,{QueryJson:{Type:1}}),//社区数据筛选列表
                 app.$axios.post(`/api/PStruct/QueryToCPStruct`,{QueryJson:{KeyWord:'',AreaId:'',RoomState:1,},Page:1,Rows:10}),//社区数据列表
                 app.$axios.post(`/api/PStruct/GetAreaList`,{CityCode:"310100",AreaCode:"",Type:2}),//区域筛选数据
-                app.$axios.post(`/api/PStruct/GetPublishRoomType`,{QueryJson:{KeyWord : '',AreaId:'',PropertyId:'',RoomTypeName:'',Rental:'',},Page:1,Rows:10,}),//户型数据列表
+                app.$axios.post(`/api/PStruct/GetPublishRoomType`,{QueryJson:{KeyWord : '',AreaId:'',PropertyId:houseTypeId,RoomTypeName:'',Rental:'',},Page:1,Rows:10,}),//户型数据列表
             ])
             var screenVillageLists_data = [{
                 villageName:'全部',
@@ -68,7 +76,7 @@ export default {
             let regionScreen = regionScreenRes_data
 
             let houseTypeLists = houseTypeListsRes.data.Data
-            return {screenVillageLists,villageLists,regionScreen,houseTypeLists}
+            return {screenVillageLists,villageLists,regionScreen,houseTypeLists,isActive,houseTypeId}
     },
     methods:{
         houseListTap(idx){

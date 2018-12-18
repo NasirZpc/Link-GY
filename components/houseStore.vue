@@ -9,7 +9,7 @@
             <p class="noDataText tc fs16 CRed pt40" v-show='list.length == 0'>无数据!&nbsp;&nbsp;-_-!!!</p>
             <ul class="house-store-lists">
                 <li v-for="(item,index) in list" :key="index">
-                    <nuxt-link :to="`/StoreDetail/${item.PropertyId}`" class="clearfix">
+                    <nuxt-link :to="`/storeDetail/${item.PropertyId}`" class="clearfix">
                         <img :src="item.MainPic " class="fl" :alt="item.FullHead">
                         <div class="fr">
                             <p class="fs20 C0">{{item.Name}}</p>
@@ -21,8 +21,12 @@
                                 <fa :icon="['fab','gg']" class="mr10"/>
                                 <span>{{item.RoomTypeCount}}种户型</span>
                             </p>
+                            <p class="C80 fs16 pt10">
+                                <fa :icon="['fas','phone']" class="mr10 C9" style="transform:rotate(90deg);"/>
+                                <span>400-999-9719</span>
+                            </p>
                             <p class="C80 fs16 pt10 ">
-                                <fa :icon="['fas','university']" class="mr10"/>
+                                <fa :icon="['fas','university']" class="mr10 C9"/>
                                 <span>{{item.Memo | textFilter}}</span>
                             </p>
                         </div>
@@ -69,7 +73,7 @@ export default{
     filters:{
         textFilter(val){
             if(val.length>60){
-                return val.slice(0,105) +'......'
+                return val.slice(0,70) +'......'
             }else{
                 return val
             }

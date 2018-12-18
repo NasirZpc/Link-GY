@@ -30,7 +30,7 @@
             <p class="noDataText tc fs16 CRed pt40" v-show='list.length == 0'>无数据!&nbsp;&nbsp;-_-!!!</p>
             <ul class="house-type-lists">
                 <li v-for="(item,index) in list" :key="index">
-                    <nuxt-link :to="`/HouseDetails/${item.Id}`" class="clearfix">
+                    <nuxt-link :to="`/houseDetail/${item.Id}`" class="clearfix">
                         <img :src="item.MainPic " class="fl" :alt="item.FullHead">
                         <div class="fl">
                             <p class="fs20 C0">
@@ -84,6 +84,12 @@ export default{
             default:()=>{
                 return {}
             }
+        },
+        houseId:{
+            type:String,
+            default:()=>{
+                return {}
+            }
         }
     },
     data() {
@@ -93,7 +99,7 @@ export default{
             regionVal: '',
 
             // villageScreen[],
-            villageVal:'',
+            villageVal:this.houseId || '',
 
             rentScreen:[
                 {

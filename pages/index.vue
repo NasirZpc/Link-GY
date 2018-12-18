@@ -45,7 +45,7 @@
             <div v-swiper:mySwiper2="swiperOption2" class="pt40 store-introduct">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
-                        <nuxt-link :to="`/houseDetail/${item.Id}`">
+                        <nuxt-link :to="`/storeDetail/${item.Id}`">
                             <img :src="item.MainPic">
                             <div class="tc">
                                 <p class="C0 fs20">{{item.AllName}}</p>
@@ -61,7 +61,7 @@
             <div v-swiper:mySwiper3="swiperOption3" class="pt40 index-teamwork">
                 <div class="swiper-wrapper clearfix">
                     <div class="swiper-slide bg-white" v-for="(item,index) in teamwork" :key="index">
-                        <nuxt-link :to="`/houseDetails/${item.Id}`">
+                        <nuxt-link :to="`/houseDetail/${item.Id}`">
                             <img :src="item.MainPic">
                             <div class="tc">
                                 <p class="C0 fs20">{{item.PropertyName}}</p>
