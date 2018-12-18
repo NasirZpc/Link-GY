@@ -1,0 +1,85 @@
+.houseLists-wrap{
+    ul.tab{
+        li{
+            border-bottom:3px solid #fff;
+            padding-bottom:10px;
+            margin-right:80px;
+            &.active{
+                color:#d90068;
+                border-color:#d90068;
+            }
+        }
+    }
+    //社区列表
+    .house-store{
+        .screen{
+            li{
+                cursor:pointer;
+                color:#333;
+                float: left;
+                font-size: 14px;
+                padding:5px 10px;
+                margin-right:20px;
+                border-radius:4px;
+                margin-top: 15px;
+                &.active{
+                    color:#fff;
+                    background: #d90068;
+                }
+            }
+        }
+        .house-store-lists{
+            li{
+                border-bottom:1px solid #dfdfdf;
+                a{
+                    margin:40px 0;
+                    display: block;
+                    img{
+                        width:450px;
+                        height:285px;
+                        border-radius:10px;
+                    }
+                    >div.fr{
+                        width:390px;
+                        padding-top:10px;
+                    }
+                }
+                &:last-child{
+                    border:none;
+                }
+            }
+        }
+    }
+    //户型列表
+    .house-type{
+        .screen-wrap{
+            .el-select{
+                margin-right:20px;
+            }
+        }
+        .house-type-lists{
+            li{
+                border-bottom:1px solid #dfdfdf;
+                a{
+                    margin:40px 0;
+                    display: block;
+                    img{
+                        width:350px;
+                        height:195px;
+                        border-radius:10px;
+                        margin-right:50px;
+                    }
+                    >div{
+                        padding-top:50px;
+                        &.fl{
+                            width:300px;
+                        }
+                    }
+                }
+                &:last-child{
+                    border:none;
+                }
+            }
+        }
+    }
+}

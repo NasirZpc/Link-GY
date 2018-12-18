@@ -2,12 +2,15 @@
 <header class="m-header">
     <el-row :gutter="0">
         <el-col :span="6" style="height:60px;">
-            <nuxt-link to="/">
+            <!-- <nuxt-link to="/"> -->
                 <img class="index-logo rel" src="~/assets/img/logo.png">
-            </nuxt-link>
+            <!-- </nuxt-link> -->
         </el-col>
-        <el-col :span="11" :offset="7" class="tr clearfix" style="height:60px;">
-            <el-menu class="el-menu-demo index-nav rel" mode="horizontal">
+        <el-col :span="13" :offset="5" class="tr clearfix" style="height:60px;">
+            <el-menu class="el-menu-demo index-nav rel" mode="horizontal" :default-active="activeIndex"  @select="handleSelect">
+                <el-menu-item index="0">
+                    <nuxt-link to="/">首页</nuxt-link>
+                </el-menu-item>
                 <el-menu-item index="1">
                     <nuxt-link to="/houseLists">房源</nuxt-link>
                 </el-menu-item>
@@ -50,7 +53,15 @@
 </template>
 <script>
 export default {
+    data(){
+        return {
+            activeIndex:'0'
+        }
+    },
     methods:{
+        handleSelect(key, keyPath) {
+            // console.log(key, keyPath);
+        },
         logOut(){
             this.$confirm('是否退出?', '提示', {
                 confirmButtonText: '确定',

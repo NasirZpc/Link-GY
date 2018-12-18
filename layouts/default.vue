@@ -33,8 +33,7 @@ export default {
             }else{
                 that.progress = this.scrollY
             }
-
-        })
+        });
     },
 }
 </script>

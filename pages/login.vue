@@ -18,8 +18,9 @@
                         <el-form-item label="手机号码" prop="tel">
                             <el-input v-model="ruleForm.tel" placeholder="请输入手机号" maxlength="11"></el-input>
                         </el-form-item>
-                        <el-form-item label="密码" prop="password">
+                        <el-form-item label="密码" prop="password" class="rel">
                             <el-input v-model="ruleForm.password" placeholder="请输入密码" :type="this.ispassword"></el-input>
+                            <fa :icon="isShowPW" class="CRed pointer abs seePassword" @keyup.enter.native="submitForm('ruleForm')" @click="changeType()" />
                         </el-form-item>
                         <el-form-item label="验证码" prop="vcode">
                             <el-input style="width:220px;" v-model="ruleForm.vcode" placeholder="请输入验证码"></el-input>
@@ -73,6 +74,8 @@ export default {
 			}
 		};
         return {
+            isShowPW:['fas','eye-slash'],
+            ispassword: "password",
             btnLoading:false,
             ruleForm:{
                 tel:'',
@@ -106,8 +109,6 @@ export default {
                 ]
             },
             checkCode: '',
-            ispassword: "password",
-			fa_eyes: 'fa fa-eye-slash'
         }
     },
     mounted(){
@@ -128,7 +129,7 @@ export default {
 		},
         changeType() {
 			this.ispassword = this.ispassword === 'password' ? 'text' : 'password';
-			this.fa_eyes = this.fa_eyes == "fa fa-eye-slash" ? "fa fa-eye" : "fa fa-eye-slash"; //密码的显示和隐藏 眼睛图标
+			this.isShowPW[1] =  this.isShowPW[1] === 'eye-slash' ? 'eye' : 'eye-slash'; //密码的显示和隐藏 眼睛图标
 		},
         //注册
         submitForm(formName) {
@@ -140,17 +141,23 @@ export default {
                         Password:CryptoJS.MD5(this.ruleForm.password).toString(),
                         VerifyCode:this.ruleForm.vcode
                     }).then(({status,data})=>{
-
-                        this.$cookies.set('linkToken',data.Data.Token)
-                        this.$cookies.set('linkId',data.Data.AccountId)
-                        this.btnLoading = false
-                        this.$message({
-                            type: 'success',
-                            message: '登录成功！'
-                        });
-                        setTimeout(()=>{
-                            location.href='/'
-                        },500)
+                        if(data.StatusCode == 200){
+                            this.$cookies.set('linkToken',data.Data.Token)
+                            this.$cookies.set('linkId',data.Data.AccountId)
+                            this.btnLoading = false
+                            this.$message({
+                                type: 'success',
+                                message: '登录成功！'
+                            });
+                            setTimeout(()=>{
+                                location.href='/'
+                            },500)
+                        }else{
+                            this.$message({
+                                type: 'error',
+                                message: data.Info+',请重新登录!'
+                            });
+                        }
                     })
                 } else {
                     this.btnLoading = false
@@ -165,8 +172,7 @@ export default {
         }
     },
     created() {
-		this.createCode();
-
+		this.createCode()
 	}
 }
 </script>

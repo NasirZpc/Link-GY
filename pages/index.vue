@@ -2,13 +2,25 @@
     <section class='m-index'>
         <div class="rel index-header">
             <!-- banner -->
-            <div v-swiper:mySwiper="swiperOption">
+            <div v-swiper:mySwiper="swiperOption1">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="~/assets/img/login.jpg">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="~/assets/img/login.jpg">
+                    <div class="swiper-slide" v-for="(item,index) in banners" :key="index">
+                        <nuxt-link :to="`/newsDetail/${item.Id}`" v-if="item.Type == 1"><!-- 新闻 -->
+                            <img :src="item.Image">
+                        </nuxt-link>
+                        <nuxt-link to v-else-if="item.Type == 2"><!-- 公告 -->
+                            <img :src="item.Image">
+                        </nuxt-link>
+                        <nuxt-link to v-else-if="item.Type == 4"><!-- 品牌介绍 -->
+                            <img :src="item.Image">
+                        </nuxt-link>
+                        <nuxt-link to v-else-if="item.Type == 5"><!-- 合作联系 -->
+                            <img :src="item.Image">
+                        </nuxt-link>
+                        <nuxt-link to v-else-if="item.Type == 7"><!-- 计加入我们 -->
+                            <img :src="item.Image">
+                        </nuxt-link>
+                        <img :src="item.Image" v-else>
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
@@ -28,57 +40,38 @@
                 </div>
                 <img class="fr" src="../static/img1.png">
             </div>
+            <!-- 门店介绍 -->
             <p class="fs24 bold pt100">门店介绍</p>
-            <ul class="pt40 store-introduct clearfix">
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="tc">
-                            <p class="C0 fs20">乐都社区</p>
-                            <p class="fs14 C9c pt10">乐都路262号2号楼</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="tc">
-                            <p class="C0 fs20">乐都社区</p>
-                            <p class="fs14 C9c pt10">乐都路262号2号楼</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="tc">
-                            <p class="C0 fs20">乐都社区</p>
-                            <p class="fs14 C9c pt10">乐都路262号2号楼</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-            </ul>
+            <div v-swiper:mySwiper2="swiperOption2" class="pt40 store-introduct">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
+                        <nuxt-link :to="`/houseDetail/${item.Id}`">
+                            <img :src="item.MainPic">
+                            <div class="tc">
+                                <p class="C0 fs20">{{item.AllName}}</p>
+                                <p class="fs14 C9c pt10">{{item.TownshipName}}</p>
+                            </div>
+                        </nuxt-link>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <!-- LINK新界的合作伙伴 -->
             <p class="fs24 bold pt100">LINK新界的合作伙伴</p>
-            <ul class="index-teamwork clearfix pt40">
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="tc">
-                            <p class="C0 fs20">乐都社区</p>
-                            <p class="fs14 C9c pt10">乐都路262号2号楼</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="tc">
-                            <p class="C0 fs20">乐都社区</p>
-                            <p class="fs14 C9c pt10">乐都路262号2号楼</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-            </ul>
+            <div v-swiper:mySwiper3="swiperOption3" class="pt40 index-teamwork">
+                <div class="swiper-wrapper clearfix">
+                    <div class="swiper-slide bg-white" v-for="(item,index) in teamwork" :key="index">
+                        <nuxt-link :to="`/houseDetails/${item.Id}`">
+                            <img :src="item.MainPic">
+                            <div class="tc">
+                                <p class="C0 fs20">{{item.PropertyName}}</p>
+                                <p class="fs14 C9c pt10">{{item.PropertyAddress}}</p>
+                            </div>
+                        </nuxt-link>
+                    </div>
+                </div>
+            </div>
+            <!-- 选择我们的理由 -->
             <div class="select-us bg-white mt100">
                 <p class="fs24 bold">选择我们的理由</p>
                 <ul class="pt40 clearfix">
@@ -104,32 +97,15 @@
                     </li>
                 </ul>
             </div>
+            <!-- 新闻 -->
             <p class="fs24 bold pt100">新闻</p>
             <ul class="pt40 store-introduct clearfix news-lists">
-                <li class="fl bg-white">
+                <li class="fl bg-white" v-for="(item,index) in news" :key="index">
                     <nuxt-link to="/">
-                        <img src="../static/img1.png">
+                        <img :src="item.MainPic">
                         <div class="">
-                            <p class="C0 fs20 tc">国庆放假通知</p>
-                            <p class="fs14 C9c pt10">根据《国务院办公厅关于2018年部分节假日……</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="">
-                            <p class="C0 fs20 tc">国庆放假通知</p>
-                            <p class="fs14 C9c pt10">根据《国务院办公厅关于2018年部分节假日……</p>
-                        </div>
-                    </nuxt-link>
-                </li>
-                <li class="fl bg-white">
-                    <nuxt-link to="/">
-                        <img src="../static/img1.png">
-                        <div class="">
-                            <p class="C0 fs20 tc">国庆放假通知</p>
-                            <p class="fs14 C9c pt10">根据《国务院办公厅关于2018年部分节假日……</p>
+                            <p class="C0 fs18 tc ellipsis">{{item.FullHead}}</p>
+                            <p class="fs14 C9c pt10 ellipsis" v-html="item.NewsContent"></p>
                         </div>
                     </nuxt-link>
                 </li>
@@ -145,18 +121,41 @@ export default {
     data(){
         return {
             banners:[],
-            swiperOption: {
+            swiperOption1: {
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
-            }
+            },
+            storeLists:[],
+            swiperOption2:{
+                slidesPerView: 3,
+                // spaceBetween:30,
+                autoplay: true,
+                loop:true
+            },
+            teamwork:[],
+            swiperOption3: {
+                slidesPerView: 2,
+                spaceBetween: 35,
+                autoplay: true,
+                loop:true
+            },
+            news:[]
         }
     },
-    asyncData (context) {
-        return {
-            banners:[]
-        }
+    async asyncData ({app}) {
+        let [bannerRes,storeListsRes,teamworkRes,newsRes] = await Promise.all([
+            app.$axios.post(`/api/SowingMap/QueryList`,{"QueryJson":{"Category":1}}),//轮播图
+            app.$axios.post(`/api/PStruct/GetHotPStruct`,{Type:1,Rows:4,BusinessType:'GY'}),//门店介绍
+            app.$axios.post(`/api/PStruct/GetHotPStruct`,{Type:4,Rows:4,BusinessType:'GY'}),//Link新界合作伙伴
+            app.$axios.post(`/api/SowingMap/QueryPageList`,{QueryJson:{"Type":1},Rows: 3,page:1,}),//新闻
+        ])
+        let banners = bannerRes.data.Data
+        let storeLists = storeListsRes.data.Data
+        let teamwork = teamworkRes.data.Data
+        let news = newsRes.data.Data.Rows
+        return {banners,storeLists,teamwork,news}
     },
 }
 </script>

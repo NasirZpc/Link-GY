@@ -47,7 +47,15 @@ i{font-style: normal;}
 .hidden{overflow:hidden;}
 /*font-weight*/
 .bold{font-weight:bold;}
-
+.ellipsis {
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+.pointer{
+    cursor:pointer;
+}
 /*color*/
 .CF{
     color:#fff;
@@ -127,6 +135,9 @@ i{font-style: normal;}
 /*margin*/
 .mt100{
     margin-top: 100px;
+}
+.mb20{
+    margin-bottom: 20px;
 }
 .mr10{
     margin-right: 10px;
