@@ -10,8 +10,8 @@
             <my-footer/>
         </el-footer>
         <button class="back-top" @click="backTop(step)" :class="{show:isActive}">
-            <fa :icon="['fas','arrow-circle-up']" class="fs24 CRed"/>
-            <span class="CRed fs14">返回顶部</span>
+            <fa :icon="['fas','arrow-circle-up']" class="fs30 CRed"/>
+            <span class="CRed fs16">返回顶部</span>
         </button>
     </el-container>
 </template>

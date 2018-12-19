@@ -101,7 +101,7 @@ export default{
     },
     data(){
         return {
-            detail:[],
+            detail:{},
             swiperOption: {
                 navigation: {
                     nextEl: '.swiper-button-next',
