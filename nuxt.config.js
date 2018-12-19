@@ -11,7 +11,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Link新界公寓' }
+      { hid: 'description', name: 'description', content: ' “LINK新界”是上海青邻公寓管理有限公司打造的长租公寓品牌，以“创享新生活”为愿景，以“工作+生活”为理念，是集线上“LINK新界租房平台”和线下“LINK新界生活社区”于一体的长租公寓综合服务商。“LINK新界”打通房源端和租客端，让租房更便捷和高效，同时集联合办公和共享空间，融创业、居住、社交、共享四大场景于一体，给有梦想不断追求的人一个温馨的家——梦在哪，家就在哪。' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }

@@ -25,6 +25,11 @@
 </template>
 <script>
 export default{
+    head() {
+        return {
+            title: "link新界-新闻列表"
+        }
+    },
     async asyncData ({app}) {
         let [listsRes] = await Promise.all([
                 app.$axios.post(`/api/SowingMap/QueryPageList`,{

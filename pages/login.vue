@@ -8,7 +8,7 @@
             </nuxt-link>
         </el-header>
         <el-main class="login-main login-page">
-            <div ref="loginPage">
+            <div ref="loginPage" @keyup.enter="submitForm('ruleForm')">
                 <el-card class="box-card fix">
                     <div slot="header" class="clearfix">
                         <span class="fs22 C0">登录</span>
@@ -156,7 +156,7 @@ export default {
                             });
                             setTimeout(()=>{
                                 location.href='/'
-                            },500)
+                            },200)
                         }else{
                             this.$message({
                                 type: 'error',

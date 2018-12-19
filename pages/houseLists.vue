@@ -18,6 +18,11 @@ export default {
         HouseStore,
         HouseType
     },
+    head() {
+        return {
+            title: "link新界-房源列表"
+        }
+    },
     data(){
         return {
             isActive:true,
