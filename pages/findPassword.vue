@@ -13,6 +13,7 @@
             	<el-card class="box-card fix" v-show="card1" style="height:240px">
                     <div slot="header" class="clearfix">
                         <span style="font-size:28px">找回密码</span>
+                        <nuxt-link to="/login" class="fr fs14 CRed">立即登录<i class="el-icon-arrow-right rel"></i></nuxt-link>
             	        <el-progress :percentage="33.33" :show-text="false" class="pt20"></el-progress>
                     </div>
                     <el-form :model="oneForm" label-position="right" :rules="oneRules" ref="oneForm" label-width="120px" class="demo-ruleForm">
@@ -72,7 +73,7 @@ export default {
     layout: 'blank',
     head() {
         return {
-            title: '登录'
+            title: '找回密码'
         }
     },
 	data() {

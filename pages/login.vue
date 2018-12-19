@@ -12,7 +12,7 @@
                 <el-card class="box-card fix">
                     <div slot="header" class="clearfix">
                         <span class="fs22 C0">登录</span>
-                        <nuxt-link to="/register" class="fr fs14 CRed">立即注册</nuxt-link>
+                        <nuxt-link to="/register" class="fr fs14 CRed">立即注册<i class="el-icon-arrow-right rel"></i></nuxt-link>
                     </div>
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
                         <el-form-item label="手机号码" prop="tel">

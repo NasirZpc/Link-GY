@@ -12,7 +12,7 @@
                 <el-card class="box-card fix" v-show="card1">
             		<div slot="header" class="clearfix">
             			<span style="font-size:28px">注册账号</span>
-                        <nuxt-link to="/login" class="fr fs14 CRed">已有账号，立即登录</nuxt-link>
+                        <nuxt-link to="/login" class="fr fs14 CRed">已有账号，立即登录<i class="el-icon-arrow-right rel"></i></nuxt-link>
             		</div>
             		<el-form :model="registerForm" label-position="right" :rules="rules" ref="registerForm" label-width="120px" class="demo-registerForm">
             			<el-form-item label="手机号码" prop="PhoneNum">
