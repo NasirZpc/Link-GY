@@ -39,6 +39,7 @@ export default{
     .news-detail-cont{
         img{
             width:100%!important;
+            height:auto;
         }
     }
 }
