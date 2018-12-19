@@ -1,5 +1,5 @@
 <template>
-    <div ref="page" class="pt60 wrapper newsDetail">
+    <div class="pt60 wrapper newsDetail">
         <p class="pt60 fs22 C0">{{detail.FullHead}}</p>
         <p class="pt10 fs14 C80">{{detail.CreateDate}}</p>
         <div class="pt40 pb40 C3 fs16 news-detail-cont" v-html="detail.NewsContent"></div>
@@ -30,7 +30,7 @@ export default{
         }
     },
     mounted(){
-		this.$refs.page.style.minHeight = document.documentElement.clientHeight - 480+'px'
+
     },
 }
 </script>

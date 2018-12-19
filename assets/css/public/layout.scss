@@ -17,3 +17,23 @@
     sans-serif !important;
     background-color: #fff;
 }
+
+
+.back-top{
+    position: fixed;
+    cursor:pointer;
+    right:60px;
+    bottom:290px;
+    width:90px;
+    text-align: center;
+    display: none;
+    z-index: 110;
+    &.show{
+        display: block;
+    }
+    >span{
+        font-weight: 500;
+        margin-top:5px;
+        display: block;
+    }
+}

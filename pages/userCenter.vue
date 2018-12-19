@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper2" ref="page">
+    <div class="wrapper2">
         <div class="user-center rel clearfix">
             <p class="fl CRed fs24 rel" style="top:29px;">{{$store.state.userinfo.Name}}</p>
             <div class="fl fs14 user-center-info">
@@ -30,7 +30,6 @@ export default{
         return {}
     },
     mounted(){
-        this.$refs.page.style.minHeight = document.documentElement.clientHeight - 480+'px'
     },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="brand-wrap" ref="page">
+    <div class="brand-wrap">
         <div class="brand-header rel">
             <img :src="detail.MainPic">
             <div class="abs"></div>
@@ -69,7 +69,7 @@ export default{
         }
     },
     mounted(){
-		this.$refs.page.style.minHeight = document.documentElement.clientHeight - 480+'px'
+
     },
 }
 </script>
