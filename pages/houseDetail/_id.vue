@@ -1,5 +1,5 @@
 <template>
-    <div class="store-detail">
+    <div class="store-detail pb100">
         <!-- banner -->
         <div v-swiper:mySwiper="swiperOption">
             <div class="swiper-wrapper">
@@ -51,7 +51,7 @@
             </div>
             <div class="map-around pt60">
                 <p class="C0 fs20 tit">周边地图</p>
-                <!-- <map-com :map-data="mapData"/> -->
+                <map-com style="margin-top:20px;"  :map-data="mapData"/>
             </div>
         </div>
         <!-- 预约看房 -->

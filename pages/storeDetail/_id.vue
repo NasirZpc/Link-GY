@@ -35,7 +35,7 @@
             </div>
             <div class="map-around pt60">
                 <p class="C0 fs20 tit">周边地图</p>
-                <map-com :map-data="mapData"/>
+                <map-com style="margin-top:20px;" :map-data="mapData"/>
             </div>
             <div class="house-type pt60">
                 <p class="C0 fs20 tit">户型列表</p>
@@ -72,7 +72,7 @@ export default{
     },
     head() {
         return {
-            title: this.detail.BaseInfo.Name
+            title: this.detail.BaseInfo.Name,
         }
     },
     async asyncData({app}){

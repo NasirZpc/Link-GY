@@ -27,13 +27,21 @@
     </div>
 </template>
 <script>
-// import loadBMap from '../plugins/map.js'
-
 import dwImg from '@/assets/img/dw.png'
 import aroundPos from '@/assets/img/aroundPos.png'
 import aroundPosActive from '@/assets/img/aroundPosActive.png'
 var mapVillage;
 export default{
+    head() {
+        return {
+            script:[
+                {
+                    src:"http://api.map.baidu.com/api?v=2.0&ak=UsFRyBiu3FKHk2WAlT5j2WFqHc2lUB3i&callback=init",
+                    defer:true,
+                }
+            ]
+        }
+    },
     props:{
         mapData:{
             type:Object,
@@ -97,7 +105,8 @@ export default{
 				isDistrnceActive: false
 			}],
 			distence: 500,
-			myMap: '',
+			lat: this.mapData.lat,
+            lng: this.mapData.lng
         }
     },
     filters: {
@@ -128,7 +137,7 @@ export default{
 			}
 			this.distenceList[index].isDistrnceActive = true;
 			this.distence = dis;
-			this.initMap(this.tabIndex);
+			this.creatChangeMap(this.tabIndex);
 		},
         creatChangeMap(tab_index) {
 			var map = new BMap.Map("mapcontainer", {
@@ -282,7 +291,7 @@ export default{
 		},
     },
     created(){
-        console.log(this.mapData)
+
     },
     mounted(){
         setTimeout(() => {
@@ -301,7 +310,7 @@ export default{
     box-sizing: border-box;
 }
 .DetailsFilter__Map__Media {
-    width: 790px;
+    width: 820px;
     height: 400px;
     overflow: hidden;
     position: relative;
@@ -354,5 +363,87 @@ export default{
         background-color: #bb0068;
     }
 }
+.villageAreaView {
+    padding-left: 15px;
+    h4 {
+        font-weight: 300;
+        font-size: 18px;
+    }
+    .villageAreaViewLi {
+        height: 35px;
+        cursor: pointer;
+        i {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            background-color: #bb0068;
+            color: #fff;
+            text-align: center;
+            border-radius: 50%;
+            font-style: normal;
+            margin-right: 10px;
+        }
+        &:hover {
+            color: #ff9a1b !important;
+            i {
+                background-color: #ff9a1b !important;
+            }
+        }
+    }
+    .villageAreaViewLi.active {
+        color: #ff9a1b !important;
+    }
 
+}
+//锚点
+ul.villageDetails-item-nav {
+    &.fix {
+        top: 60px;
+        left: 0;
+        width: 100%;
+        z-index: 2001;
+        background: #fff;
+    }
+}
+p.storeHouseLists {
+	>i{
+		margin-right:10px;
+	}
+	&:nth-of-type(2){
+		>i{
+			position:relative;
+			left:-3px;
+		}
+	}
+	&:nth-of-type(4){
+		>i{
+			position:relative;
+			left:3px;
+			margin-right:20px;
+		}
+	}
+}
+
+  .swiper-slide {
+    background-size: cover;
+    background-position: center;
+
+  }
+  .gallery-top {
+    height: 80%!important;
+    width: 100%;
+  }
+  .gallery-thumbs {
+    height: 100px!important;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+  .gallery-thumbs .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+  }
+  .gallery-thumbs .swiper-slide-active {
+    opacity: 1;
+  }
 </style>

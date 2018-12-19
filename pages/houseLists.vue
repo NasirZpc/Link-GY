@@ -68,7 +68,6 @@ export default {
             }
             let screenVillageLists = screenVillageLists_data
             let villageLists = villageListsRes.data.Data
-            console.log(villageLists)
             var regionScreenRes_data = [{
                 AreaName:'全部',
                 AreaId:null,
