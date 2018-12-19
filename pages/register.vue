@@ -38,24 +38,23 @@
             			</el-form-item>
             			<el-form-item label="密码" prop="Password">
             				<el-input :type="this.ispassword" @keyup.32.native="inputFunc(1)" v-model="registerForm2.Password" auto-complete="off" placeholder="请输入您的密码"></el-input>
-            				<i :class="fa_eyes" aria-hidden="true" @click="changeType()" class="open_close"></i>
+                            <fa :icon="isShowPW" class="CRed pointer abs seePassword" @click="changeType()" />
             			</el-form-item>
             			<el-form-item label="确定密码" prop="confirm_pass">
             				<el-input :type="this.ispassword2" @keyup.32.native="inputFunc(2)" v-model="registerForm2.confirm_pass" auto-complete="off" placeholder="请确认密码"></el-input>
-            				<i :class="fa_eyes2" aria-hidden="true" @click="changeType2()" class="open_close"></i>
+            				<fa :icon="isShowPW2" class="CRed pointer abs seePassword" @click="changeType2()" />
             			</el-form-item>
             			<el-form-item prop="agree" label-width="40px">
             				<el-checkbox v-model="registerForm2.type" label="agree" @change="handType()">
             					我已经阅读并同意
-
             				</el-checkbox>
-            				<a class="linkBtn" style="padding:0px;float: inherit;cursor:pointer;">
+            				<a class="linkBtn CRed" style="padding:0px;float: inherit;cursor:pointer;">
             					《用户注册协议》
             				</a>
             				<div class="tishixiaoxi" v-show="this.showCheckbox">请接受我们的声明</div>
             			</el-form-item>
 
-            			<el-button class="loginBtn" @click="submitForm2('registerForm2')">注册</el-button>
+            			<el-button class="login-btn block" type="primary" @click="submitForm2('registerForm2')">注册</el-button>
             		</el-form>
             	</el-card>
             </div>
@@ -63,6 +62,8 @@
     </el-container>
 </template>
 <script>
+var code; //在全局定义验证码
+import CryptoJS from 'crypto-js'
 export default {
     layout: 'blank',
     head() {
@@ -99,7 +100,7 @@ export default {
 			//  else if (!reg.test(PhoneNum)) {
 			// 	callback(new Error('请输入正确的手机号码'));
 			// }
-			else if(md5(value) !== this.SMCode){
+			else if(CryptoJS.MD5(value).toString()!== this.SMCode){
 				callback(new Error('短信验证码不正确'));
 			}else {
 				callback();
@@ -142,6 +143,8 @@ export default {
 			}
 		};
 		return {
+            isShowPW:['fas','eye-slash'],
+            isShowPW2:['fas','eye-slash'],
 			card1: true,
 			card2: false,
 			disabled: true,
@@ -233,13 +236,13 @@ export default {
 			let params = {
 				PhoneNum: this.registerForm.PhoneNum
 			}
-			getIsExistPhone(params).then((response) => {
-				var errorText = response.Info;
-				switch (response.StatusCode) {
+			this.$axios.post(`/api/Member/IsExistPhone`,params).then((response) => {//判断手机号是否注册
+				var errorText = response.data.Info;
+				switch (response.data.StatusCode) {
 					case 200:
-						if (response.Data == true) {
+						if (response.data.Data == true) {
 							this.isPhone = true;
-						}else if(response.Data == false){
+						}else if(response.data.Data == false){
 							this.isPhone = false;
 						}
 
@@ -257,17 +260,16 @@ export default {
 								Type: 1, //注册类型
 								PhoneNum: this.registerForm.PhoneNum
 							}
-							getSMSHelper(paramss).then((response) => {
-								console.log(response.Data)
-								var errorText = response.Info;
-								switch (response.StatusCode) {
+							this.$axios.post(`/api/Common/SendSMS`,paramss).then((response) => {//获取短信接口
+								var errorText = response.data.Info;
+								switch (response.data.StatusCode) {
 									case 200:
 										this.$message({
 											type: 'success',
 											message: '短信验证码发送成功，请注意查收！'
 										});
-										this.SMCode = response.Data.RegisterCode.toLowerCase();
-										this.sidePhone = response.Data.PhoneNum;
+										this.SMCode = response.data.Data.RegisterCode.toLowerCase();
+										this.sidePhone = response.data.Data.PhoneNum;
 										break;
 									case 500:
 										this.$message({
@@ -349,13 +351,13 @@ export default {
 							"RealName": this.registerForm2.RealName,
 							"PhoneNum": this.registerForm.PhoneNum,
 							"Email": this.registerForm2.Email,
-							"Password": md5(this.registerForm2.Password)
+							"Password": CryptoJS.MD5(this.registerForm2.Password).toString()
 						}
                         console.log(dataArry)
-						getRegister(dataArry)
+						this.$axios.post(`/api/Member/Register`,dataArry)//注册
 							.then((response) => {
-								var errorText = response.Info;
-								switch (response.StatusCode) {
+								var errorText = response.data.Info;
+								switch (response.data.StatusCode) {
 									case 200:
 										this.$message({
 											type: 'success',
@@ -395,13 +397,13 @@ export default {
 			}
 
 		},
-		changeType() {
+        changeType() {
 			this.ispassword = this.ispassword === 'password' ? 'text' : 'password';
-			this.fa_eyes = this.fa_eyes == "fa fa-eye-slash" ? "fa fa-eye" : "fa fa-eye-slash";
+			this.isShowPW[1] =  this.isShowPW[1] === 'eye-slash' ? 'eye' : 'eye-slash'; //密码的显示和隐藏 眼睛图标
 		},
-		changeType2() {
+        changeType2() {
 			this.ispassword2 = this.ispassword2 === 'password' ? 'text' : 'password';
-			this.fa_eyes2 = this.fa_eyes2 == "fa fa-eye-slash" ? "fa fa-eye" : "fa fa-eye-slash";
+			this.isShowPW2[1] =  this.isShowPW2[1] === 'eye-slash' ? 'eye' : 'eye-slash'; //密码的显示和隐藏 眼睛图标
 		},
 		handType() {
 			this.showCheckbox = false;

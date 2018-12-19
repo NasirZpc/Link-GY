@@ -20,14 +20,14 @@
                         </el-form-item>
                         <el-form-item label="密码" prop="password" class="rel">
                             <el-input v-model="ruleForm.password" placeholder="请输入密码" :type="this.ispassword"></el-input>
-                            <fa :icon="isShowPW" class="CRed pointer abs seePassword" @keyup.enter.native="submitForm('ruleForm')" @click="changeType()" />
+                            <fa :icon="isShowPW" class="CRed pointer abs seePassword" @click="changeType()" />
                         </el-form-item>
                         <el-form-item label="验证码" prop="vcode">
                             <el-input style="width:220px;" v-model="ruleForm.vcode" placeholder="请输入验证码"></el-input>
                             <input type="button" id="code" @click="createCode" class="verification fr" v-model="checkCode" />
                         </el-form-item>
                         <el-form-item class="tr">
-                            <nuxt-link class="CRed forget-password" to="/">忘记密码</nuxt-link>
+                            <nuxt-link class="CRed forget-password" to="/findPassword">忘记密码</nuxt-link>
                         </el-form-item>
                     </el-form>
                     <el-button class="login-btn block" type="primary" @click="submitForm('ruleForm')" :loading="btnLoading">登录</el-button>
