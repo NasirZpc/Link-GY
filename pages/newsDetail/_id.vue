@@ -2,7 +2,7 @@
     <div ref="page" class="pt60 wrapper newsDetail">
         <p class="pt60 fs22 C0">{{detail.FullHead}}</p>
         <p class="pt10 fs14 C80">{{detail.CreateDate}}</p>
-        <div class="pt40 pb40 C3 fs16" v-html="detail.NewsContent"></div>
+        <div class="pt40 pb40 C3 fs16 news-detail-cont" v-html="detail.NewsContent"></div>
     </div>
 </template>
 <script>
@@ -34,10 +34,12 @@ export default{
     },
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .newsDetail{
-    img{
-        width:100%;
+    .news-detail-cont{
+        img{
+            width:100%!important;
+        }
     }
 }
 </style>

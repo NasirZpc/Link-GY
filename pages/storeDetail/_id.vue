@@ -35,7 +35,7 @@
             </div>
             <div class="map-around pt60">
                 <p class="C0 fs20 tit">周边地图</p>
-                <!-- <map-com :map-data="mapData"/> -->
+                <map-com :map-data="mapData"/>
             </div>
             <div class="house-type pt60">
                 <p class="C0 fs20 tit">户型列表</p>
