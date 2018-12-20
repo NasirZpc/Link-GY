@@ -7,7 +7,7 @@
             <!-- </nuxt-link> -->
         </el-col>
         <el-col :span="13" :offset="5" class="tr clearfix" style="height:60px;">
-            <el-menu class="el-menu-demo index-nav rel" mode="horizontal" :default-active="activeIndex"  @select="handleSelect">
+            <el-menu class="el-menu-demo index-nav rel" mode="horizontal"  @select="handleSelect">
                 <el-menu-item index="0">
                     <nuxt-link to="/">首页</nuxt-link>
                 </el-menu-item>
@@ -55,7 +55,7 @@
 export default {
     data(){
         return {
-            activeIndex:'0'
+            // activeIndex:'0'
         }
     },
     methods:{

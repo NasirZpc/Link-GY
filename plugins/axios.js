@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import qs from 'qs'
-
+import axios from 'axios'
 var vm = new Vue()
 
 var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
@@ -12,8 +12,15 @@ function generateMixed(n){
     }
     return res;
 }
+// if (process.browser) {
+//     debugger
+//     let options = {}
+//     options.baseURL =`http://api.linkxinjie.com/`
+//     axios.create(options)
+// }
 //axios配置
 export default function ({ $axios, redirect,app }) {
+
     $axios.onRequest(config => {
         var Token  = '';
         try{
@@ -32,6 +39,7 @@ export default function ({ $axios, redirect,app }) {
             config.data = qs.stringify(config.data)
         }
         if (process.browser) {
+
             // vm.$loading()
         }
 
@@ -50,4 +58,5 @@ export default function ({ $axios, redirect,app }) {
             redirect('/error')
         }
     })
+
 }
