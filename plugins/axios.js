@@ -12,12 +12,6 @@ function generateMixed(n){
     }
     return res;
 }
-// if (process.browser) {
-//     debugger
-//     let options = {}
-//     options.baseURL =`http://api.linkxinjie.com/`
-//     axios.create(options)
-// }
 //axios配置
 export default function ({ $axios, redirect,app }) {
 
