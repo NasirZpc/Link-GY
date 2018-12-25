@@ -2,12 +2,12 @@
 <header class="m-header">
     <el-row :gutter="0">
         <el-col :span="6" style="height:60px;">
-            <!-- <nuxt-link to="/"> -->
+            <a href="javascript:;" class="block" @click="clickLogo">
                 <img class="index-logo rel" src="~/assets/img/logo.png">
-            <!-- </nuxt-link> -->
+            </a>
         </el-col>
         <el-col :span="13" :offset="5" class="tr clearfix" style="height:60px;">
-            <el-menu class="el-menu-demo index-nav rel" mode="horizontal"  @select="handleSelect">
+            <el-menu class="el-menu-demo index-nav rel" mode="horizontal"  @select="handleSelect" :default-active="getActiveIndex">
                 <el-menu-item index="0">
                     <nuxt-link to="/">首页</nuxt-link>
                 </el-menu-item>
@@ -54,13 +54,27 @@
 <script>
 export default {
     data(){
-        return {
-            // activeIndex:'0'
+        return {}
+    },
+    computed : {
+        getActiveIndex(){
+            return this.$store.getters.activeIndex
+        },
+    },
+    watch: {
+        getActiveIndex(val) {
+            return val
         }
     },
     methods:{
         handleSelect(key, keyPath) {
-            // console.log(key, keyPath);
+            // this.$store.commit('SET_ACTIVEINDEX',key)
+            this.$cookies.set('activeIndex',key)
+        },
+        clickLogo(){
+            this.$store.commit('SET_ACTIVEINDEX','0')
+            this.$cookies.set('activeIndex','0')
+            this.$router.push({path:'/'})
         },
         logOut(){
             this.$confirm('是否退出?', '提示', {
@@ -76,6 +90,9 @@ export default {
                 });
             });
         }
+    },
+    created(){
+        console.log(this.$store.getters.activeIndex)
     }
 }
 </script>

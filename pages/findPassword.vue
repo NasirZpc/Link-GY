@@ -1,11 +1,11 @@
 <template>
     <el-container class="layout-default">
         <el-header style="height:60px;" class="clearfix login-header">
-            <nuxt-link class="fl" to="/"><img class="index-logo rel" src="~/assets/img/logo.png"></nuxt-link>
-            <nuxt-link class="fr" to="/">
+            <a class="fl" href="javascript:;" @click="clickLogo"><img class="index-logo rel" src="~/assets/img/logo.png"></a>
+            <a class="fr" href="javascript:;" @click="clickLogo">
                 <span class="fs18 inlin-b mr10">返回首页</span>
                 <i class="el-icon-arrow-right rel"></i>
-            </nuxt-link>
+            </a>
         </el-header>
         <el-main class="login-main login-page">
             <div ref="loginPage">
@@ -182,6 +182,11 @@ export default {
 		next()
 	},
 	methods: {
+        clickLogo(){
+            this.$store.commit('SET_ACTIVEINDEX','0')
+            this.$cookies.set('activeIndex','0')
+            this.$router.push({path:'/'})
+        },
 		inputFunc(type) {
 			switch (type) {
 				case 1:

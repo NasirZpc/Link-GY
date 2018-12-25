@@ -110,9 +110,9 @@
                     </nuxt-link>
                 </li>
             </ul>
-            <nuxt-link to="/newsLists" class="more-news-btn tc">
+            <a href="javascript:;" class="more-news-btn tc" @click="moreNews">
                 <el-button type="primary" class="fs16">MORE</el-button>
-            </nuxt-link>
+            </a>
         </div>
     </section>
 </template>
@@ -159,6 +159,11 @@ export default {
         return {banners,storeLists,teamwork,news}
     },
     methods:{
+        moreNews(){
+            this.$store.commit('SET_ACTIVEINDEX','2')
+            this.$cookies.set('activeIndex','2')
+            this.$router.push({path:'/newsLists'})
+        },
         indexSearchFunc(){
             if(this.indexSearch !="" && !this.isNull(this.indexSearch)){
                 this.$router.push({path:'/houseLists',query: {search: this.indexSearch}})

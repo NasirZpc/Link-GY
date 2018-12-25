@@ -5,6 +5,7 @@ import actions from './actions'
 
 const state = {
     userinfo : '',
+    activeIndex:'0',
 }
 
 export default () => {
