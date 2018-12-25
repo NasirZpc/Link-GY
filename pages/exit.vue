@@ -8,7 +8,11 @@ export default {
     middleware: async ({ctx,app,store}) => {
         $cookies.remove('linkId');
         $cookies.remove('linkToken')
-        window.location.href='/'
+        // window.location.href='/'
+    },
+    created(){
+        this.$store.commit('SET_USERINFO', '');
+        this.$router.push({path:'/'})
     }
 }
 </script>

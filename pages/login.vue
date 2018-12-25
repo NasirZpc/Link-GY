@@ -149,13 +149,14 @@ export default {
                         if(data.StatusCode == 200){
                             this.$cookies.set('linkToken',data.Data.Token)
                             this.$cookies.set('linkId',data.Data.AccountId)
-                            this.btnLoading = false
+                            console.log(data.Data)
                             this.$message({
                                 type: 'success',
                                 message: '登录成功！'
                             });
                             setTimeout(()=>{
-                                location.href='/'
+                                this.$store.commit('SET_USERINFO', data.Data);
+                                this.$router.push({path:'/'})
                             },200)
                         }else{
                             this.$message({
@@ -163,6 +164,7 @@ export default {
                                 message: data.Info+',请重新登录!'
                             });
                         }
+                        this.btnLoading = false
                     })
                 } else {
                     this.btnLoading = false

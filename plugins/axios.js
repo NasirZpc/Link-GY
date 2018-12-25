@@ -14,8 +14,8 @@ function generateMixed(n){
 }
 //axios配置
 export default function ({ $axios, redirect,app }) {
-
     $axios.onRequest(config => {
+        config.baseURL = 'http://api.linkxinjie.com'
         var Token  = '';
         try{
             var cookies = config.headers.common.cookie.split('; ');

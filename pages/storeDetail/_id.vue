@@ -57,9 +57,9 @@
                         </nuxt-link>
                     </li>
                 </ul>
-                <el-button class="fs16 rel">
+                <div class="fs16 rel more-house tc">
                     <nuxt-link class="block CRed abs" :to="`/houseLists?id=${detail.BaseInfo.Id}`">更多房型</nuxt-link>
-                </el-button>
+                </div>
             </div>
         </div>
     </div>

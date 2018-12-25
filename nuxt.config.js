@@ -61,9 +61,23 @@ module.exports = {
     '@nuxtjs/proxy',
     'nuxt-fontawesome'
   ],
-  proxy: [
-      ['/api', { target: 'http://api.linkxinjie.com'}]
-  ],
+  // axios: {
+  //   proxy: true,
+    // prefix: '/api', // baseURL
+    // credentials: true
+  // },
+//   proxy: {
+//     '/api/': {
+//       target: 'http://api.linkxinjie.com', // 代理地址
+//       changeOrigin: true,
+//       pathRewrite: {
+//         '^/api': ''
+//       },
+//     },
+// },
+  // proxy: [
+  //     ['/api', { target: 'http://api.linkxinjie.com'}]
+  // ],
   /*
   ** Axios module configuration
   */

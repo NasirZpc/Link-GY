@@ -57,12 +57,13 @@
                 border-radius:8px;
             }
         }
-        button{
+        .more-house{
             width:180px;
             height:45px;
             display: block;
             margin:0 auto 60px;
-            border-color:#d90068;
+            border:1px solid #d90068;
+            border-radius: 3px;
             a{
                 width:180px;
                 height:45px;
