@@ -5,7 +5,7 @@
   "author": "NasirZpc",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development nodemon server/index.js",
+    "dev": "nuxt",
     "start": "NODE_ENV=production node server/index.js",
     "build": "nuxt build",
     "generate": "nuxt generate",

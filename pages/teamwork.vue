@@ -1,7 +1,7 @@
 <template>
     <div class="teamwork-wrap" ref="page">
         <div class="teamwork-header rel">
-            <img src="../static/teamwork-1.png">
+            <img :src="detail.MainPic">
         </div>
         <img src="../static/teamwork-2.png" class="teamwork-logo block">
         <div class="teamwork-cont rel pb100">

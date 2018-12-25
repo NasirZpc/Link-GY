@@ -2,8 +2,8 @@
     <div class="brand-wrap">
         <div class="brand-header rel">
             <img :src="detail.MainPic">
-            <div class="abs"></div>
-            <p class="abs tc CF">LINK新界</p>
+            <!-- <div class="abs"></div>
+            <p class="abs tc CF">LINK新界</p> -->
         </div>
         <div class="wrapper2">
             <p class="fs20 C0 tc pt100">{{detail.FullHead}}</p>

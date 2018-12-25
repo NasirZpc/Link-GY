@@ -1,7 +1,7 @@
 <template>
     <div class="joinUs-wrap" ref="page">
         <div class="joinUs-header rel">
-            <img src="../static/joinUs-1.png">
+            <img :src="detail.MainPic">
         </div>
         <div class="wrapper2 pb100">
             <div class="pt40 C0 fs16" v-html="detail.NewsContent"></div>
