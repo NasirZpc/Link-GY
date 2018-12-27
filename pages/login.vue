@@ -155,7 +155,7 @@ export default {
                         if(data.StatusCode == 200){
                             this.$cookies.set('linkToken',data.Data.Token)
                             this.$cookies.set('linkId',data.Data.AccountId)
-                            console.log(data.Data)
+                            // console.log(data.Data)
                             this.$message({
                                 type: 'success',
                                 message: '登录成功！'

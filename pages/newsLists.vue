@@ -31,6 +31,7 @@ export default{
         }
     },
     async asyncData ({app}) {
+        app.store.dispatch('SET_ACTIVEINDEX', '2');
         let [listsRes] = await Promise.all([
                 app.$axios.post(`/api/SowingMap/QueryPageList`,{
                     Page:1,
@@ -72,7 +73,7 @@ export default{
                 }
             }
             this.$axios.post(`/api/SowingMap/QueryPageList`,params).then((response) =>{
-                console.log(response.data.Data.Rows);
+                // console.log(response.data.Data.Rows);
                 switch(response.data.StatusCode){
                     case 500 :
                         this.$message.error('新闻列表请求失败'+response.data.Info)

@@ -358,7 +358,7 @@ export default {
 							"Email": this.registerForm2.Email,
 							"Password": CryptoJS.MD5(this.registerForm2.Password).toString()
 						}
-                        console.log(dataArry)
+                        // console.log(dataArry)
 						this.$axios.post(`/api/Member/Register`,dataArry)//注册
 							.then((response) => {
 								var errorText = response.data.Info;

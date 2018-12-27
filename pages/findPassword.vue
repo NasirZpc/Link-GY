@@ -220,7 +220,7 @@ export default {
 				Type: 2, //找回密码
 				PhoneNum: this.oneForm.inputTel
 			}
-			console.log(params)
+			// console.log(params)
 			this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
 				var errorText = response.data.Info;
 				switch (response.data.StatusCode) {

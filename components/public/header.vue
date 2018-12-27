@@ -58,11 +58,13 @@ export default {
     },
     computed : {
         getActiveIndex(){
+            console.log(this.$store.getters.activeIndex)
             return this.$store.getters.activeIndex
         },
     },
     watch: {
         getActiveIndex(val) {
+            console.log(val)
             return val
         }
     },
@@ -72,7 +74,7 @@ export default {
             this.$cookies.set('activeIndex',key)
         },
         clickLogo(){
-            this.$store.commit('SET_ACTIVEINDEX','0')
+            this.$store.dispatch('SET_ACTIVEINDEX','0')
             this.$cookies.set('activeIndex','0')
             this.$router.push({path:'/'})
         },

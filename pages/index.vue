@@ -45,7 +45,7 @@
             <div v-swiper:mySwiper2="swiperOption2" class="pt40 store-introduct">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
-                        <nuxt-link :to="`/storeDetail/${item.Id}`">
+                        <nuxt-link :to="`/storeDetail/${item.Id}?num=${item.RoomTypeCount}`">
                             <img :src="item.MainPic">
                             <div class="tc">
                                 <p class="C0 fs20">{{item.AllName}}</p>
@@ -133,7 +133,7 @@ export default {
                 slidesPerView: 3,
                 // spaceBetween:30,
                 autoplay: true,
-                loop:true
+                // loop:true
             },
             teamwork:[],
             swiperOption3: {
@@ -160,7 +160,7 @@ export default {
     },
     methods:{
         moreNews(){
-            this.$store.commit('SET_ACTIVEINDEX','2')
+            this.$store.dispatch('SET_ACTIVEINDEX', '2');
             this.$cookies.set('activeIndex','2')
             this.$router.push({path:'/newsLists'})
         },

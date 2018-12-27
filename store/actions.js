@@ -26,4 +26,7 @@ export default{
             commit('SET_USERINFO','')
         }
     },
+    SET_ACTIVEINDEX({commit},activeIndex){
+        commit('SET_ACTIVEINDEX',activeIndex)
+    },
 }
