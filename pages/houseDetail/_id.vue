@@ -41,7 +41,7 @@
             </div>
             <div class="supporting-facilities pt60">
                 <p class="C0 fs20 tit">配套设施</p>
-                <p class="fs14 C80 pt20">日式榻榻米暖心设计，原木色系与现代环保家具完美搭配，美观与收纳兼备。多功能衣柜、隐藏式地台储物，精妙布局功能区，让每一寸空间都得到高效利用。明窗阅读，独立卫浴，创意绿植，精致灵动，意趣天成，拎包入住即刻开启精致生活。</p>
+                <p class="fs14 C80 pt20">{{detail.BaseInfo.Content}}</p>
                 <ul class="house-config-lists pt40 clearfix">
                     <li class="fl" v-for="(item,index) in houseConfig" :key="index" :class="{ CRed: item.active }">
                         <i class="iconfont" v-html="item.iconfont"></i>
