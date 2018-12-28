@@ -221,9 +221,9 @@ export default {
 				PhoneNum: this.oneForm.inputTel
 			}
 			// console.log(params)
-			this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
-				var errorText = response.data.Info;
-				switch (response.data.StatusCode) {
+			this.$axios.post(`/Common/SendSMS`,params).then((response) => {
+				var errorText = response.data.Message;
+				switch (response.data.Status) {
 					case 200:
 						this.$message({
 							type: 'success',
@@ -276,9 +276,9 @@ export default {
 					let params = {
 						PhoneNum: this.oneForm.inputTel
 					}
-					this.$axios.post(`/api/Member/IsExistPhone`,params).then((response) => {//判断手机号是否注册过
-						var errorText = response.data.Info;
-						switch (response.data.StatusCode) {
+					this.$axios.post(`/Member/IsExistPhone`,params).then((response) => {//判断手机号是否注册过
+						var errorText = response.data.Message;
+						switch (response.data.Status) {
 							case 200:
 							if(response.data.Data == true){
 								this.card1 = false;
@@ -328,9 +328,9 @@ export default {
 						PhoneNum: this.oneForm.inputTel,
 						Password: CryptoJS.MD5(this.threeForm.Password).toString()
 					}
-                    this.$axios.post(`/api/Member/FindPassword`,params).then((response) => {
-						var errorText = response.data.Info;
-						switch (response.data.StatusCode) {
+                    this.$axios.post(`/Member/FindPassword`,params).then((response) => {
+						var errorText = response.data.Message;
+						switch (response.data.Status) {
 							case 200:
 								this.card3 = true;
 								this.card4 = false;

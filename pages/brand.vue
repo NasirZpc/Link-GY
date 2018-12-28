@@ -53,7 +53,7 @@ export default{
     },
     async asyncData ({app}) {
         let [detailRes] = await Promise.all([
-                app.$axios.post(`/api/SowingMap/QueryInfo`,{
+                app.$axios.post(`/SowingMap/QueryInfo`,{
         			QueryJson:{
         				"Type":4,
         				"Id":''

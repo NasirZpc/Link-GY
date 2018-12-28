@@ -147,12 +147,12 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.btnLoading = true
-                    this.$axios.post('/api/Member/Login',{
+                    this.$axios.post('/Member/Login',{
                         Account:this.ruleForm.tel,
                         Password:CryptoJS.MD5(this.ruleForm.password).toString(),
                         VerifyCode:this.ruleForm.vcode
                     }).then(({status,data})=>{
-                        if(data.StatusCode == 200){
+                        if(data.Status == 200){
                             this.$cookies.set('linkToken',data.Data.Token)
                             this.$cookies.set('linkId',data.Data.AccountId)
                             // console.log(data.Data)
@@ -167,7 +167,7 @@ export default {
                         }else{
                             this.$message({
                                 type: 'error',
-                                message: data.Info+',请重新登录!'
+                                message: data.Message
                             });
                         }
                         this.btnLoading = false

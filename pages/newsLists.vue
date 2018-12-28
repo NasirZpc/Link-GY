@@ -33,7 +33,7 @@ export default{
     async asyncData ({app}) {
         app.store.dispatch('SET_ACTIVEINDEX', '2');
         let [listsRes] = await Promise.all([
-                app.$axios.post(`/api/SowingMap/QueryPageList`,{
+                app.$axios.post(`/SowingMap/QueryPageList`,{
                     Page:1,
                     Rows:10,
                     QueryJson:{
@@ -72,9 +72,9 @@ export default{
                     "Type":1
                 }
             }
-            this.$axios.post(`/api/SowingMap/QueryPageList`,params).then((response) =>{
+            this.$axios.post(`/SowingMap/QueryPageList`,params).then((response) =>{
                 // console.log(response.data.Data.Rows);
-                switch(response.data.StatusCode){
+                switch(response.data.Status){
                     case 500 :
                         this.$message.error('新闻列表请求失败'+response.data.Info)
                         break;

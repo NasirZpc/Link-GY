@@ -14,7 +14,7 @@ export default{
     },
     async asyncData ({app}) {
         let [detailRes] = await Promise.all([
-                app.$axios.post(`/api/SowingMap/QueryInfo`,{
+                app.$axios.post(`/SowingMap/QueryInfo`,{
         			QueryJson:{
         				"Type":1,
         				"Id": app.context.route.params.id

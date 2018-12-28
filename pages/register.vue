@@ -241,9 +241,9 @@ export default {
 			let params = {
 				PhoneNum: this.registerForm.PhoneNum
 			}
-			this.$axios.post(`/api/Member/IsExistPhone`,params).then((response) => {//判断手机号是否注册
-				var errorText = response.data.Info;
-				switch (response.data.StatusCode) {
+			this.$axios.post(`/Member/IsExistPhone`,params).then((response) => {//判断手机号是否注册
+				var errorText = response.data.Message;
+				switch (response.data.Status) {
 					case 200:
 						if (response.data.Data == true) {
 							this.isPhone = true;
@@ -265,9 +265,9 @@ export default {
 								Type: 1, //注册类型
 								PhoneNum: this.registerForm.PhoneNum
 							}
-							this.$axios.post(`/api/Common/SendSMS`,paramss).then((response) => {//获取短信接口
-								var errorText = response.data.Info;
-								switch (response.data.StatusCode) {
+							this.$axios.post(`/Common/SendSMS`,paramss).then((response) => {//获取短信接口
+								var errorText = response.data.Message;
+								switch (response.data.Status) {
 									case 200:
 										this.$message({
 											type: 'success',
@@ -359,10 +359,10 @@ export default {
 							"Password": CryptoJS.MD5(this.registerForm2.Password).toString()
 						}
                         // console.log(dataArry)
-						this.$axios.post(`/api/Member/Register`,dataArry)//注册
+						this.$axios.post(`/Member/Register`,dataArry)//注册
 							.then((response) => {
-								var errorText = response.data.Info;
-								switch (response.data.StatusCode) {
+								var errorText = response.data.Message;
+								switch (response.data.Status) {
 									case 200:
 										this.$message({
 											type: 'success',

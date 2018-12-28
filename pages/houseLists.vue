@@ -49,20 +49,43 @@ export default {
             isActive =true
         }
         let [screenVillageListsRes,villageListsRes,regionScreenRes,houseTypeListsRes] = await Promise.all([
-                app.$axios.post(`/api/PStruct/QueryToCPStruct`,{QueryJson:{Type:1}}),//社区数据筛选列表
-                app.$axios.post(`/api/PStruct/QueryToCPStruct`,{QueryJson:{KeyWord:searchVal,AreaId:'',RoomState:1,},Page:1,Rows:10}),//社区数据列表
-                app.$axios.post(`/api/PStruct/GetAreaList`,{CityCode:"310100",AreaCode:"",Type:2}),//区域筛选数据
-                app.$axios.post(`/api/PStruct/GetPublishRoomType`,{QueryJson:{KeyWord : '',AreaId:'',PropertyId:villageId,RoomTypeName:'',Rental:'',},Page:1,Rows:10,}),//户型数据列表
+                app.$axios.post(`/Property/QueryPropertyList`,{
+                    PageIndex:1,
+                	PageSize:100,
+                	SortName:"",
+                	IsASC:true,
+                	AreaId:"",
+                	KeyWord:""
+                }),//社区数据筛选列表
+                app.$axios.post(`/Property/QueryPropertyList`,{
+                	PageIndex:1,
+                	PageSize:10,
+                	SortName:"",
+                	IsASC:true,
+                	AreaId:"",
+                	KeyWord:searchVal
+                }),//社区数据列表
+                app.$axios.post(`/PStruct/GetAreaList`,{CityCode:"310100",AreaCode:"",Type:2}),//区域筛选数据
+                app.$axios.post(`/RoomType/QueryRoomTypeList`,{
+                    PageIndex:1,
+                	PageSize:10,
+                	SortName:"",
+                	IsASC:true,
+                	AreaId:"",
+                	KeyWord:"",
+                	PropertyId:villageId,
+                	Rental:""
+                }),//户型数据列表
             ])
             var screenVillageLists_data = [{
                 villageName:'全部',
                 PStructId:null,
                 isActive:true
             }]
-            for(var i =0;i<screenVillageListsRes.data.Data.Rows.length;i++ ){
+            for(var i =0;i<screenVillageListsRes.data.Data.Data.length;i++ ){
                 screenVillageLists_data.push({
-                    villageName: screenVillageListsRes.data.Data.Rows[i].Name,
-                    PStructId  : screenVillageListsRes.data.Data.Rows[i].PropertyId,
+                    villageName: screenVillageListsRes.data.Data.Data[i].Name,
+                    PStructId  : screenVillageListsRes.data.Data.Data[i].PropertyId,
                     isActive   : false
                 })
             }

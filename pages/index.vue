@@ -64,8 +64,8 @@
                         <nuxt-link :to="`/houseDetail/${item.Id}`">
                             <img :src="item.MainPic">
                             <div class="tc">
-                                <p class="C0 fs20">{{item.PropertyName}}</p>
-                                <p class="fs14 C9c pt10">{{item.PropertyAddress}}</p>
+                                <p class="C0 fs20">{{item.AllName}}</p>
+                                <p class="fs14 C9c pt10">{{item.TownshipName}}</p>
                             </div>
                         </nuxt-link>
                     </div>
@@ -140,17 +140,17 @@ export default {
                 slidesPerView: 2,
                 spaceBetween: 35,
                 autoplay: true,
-                loop:true
+                // loop:true
             },
             news:[]
         }
     },
     async asyncData ({app}) {
         let [bannerRes,storeListsRes,teamworkRes,newsRes] = await Promise.all([
-            app.$axios.post(`/api/SowingMap/QueryList`,{"QueryJson":{"Category":1}}),//轮播图
-            app.$axios.post(`/api/PStruct/GetHotPStruct`,{Type:1,Rows:4,BusinessType:'GY'}),//门店介绍
-            app.$axios.post(`/api/PStruct/GetHotPStruct`,{Type:4,Rows:4,BusinessType:'GY'}),//Link新界合作伙伴
-            app.$axios.post(`/api/SowingMap/QueryPageList`,{QueryJson:{"Type":1},Rows: 3,page:1,}),//新闻
+            app.$axios.post(`/SowingMap/QueryList`,{"QueryJson":{"Category":2}}),//轮播图
+            app.$axios.post(`/PStruct/GetHotPStruct`,{Type:1,Rows:4,BusinessType:'GY'}),//门店介绍
+            app.$axios.post(`/PStruct/GetHotPStruct`,{Type:1,BusinessType:"GY",Rows:"10",ObjectId:""}),//Link新界合作伙伴
+            app.$axios.get(`/SowingMap/HomePush`),//新闻
         ])
         let banners = bannerRes.data.Data
         let storeLists = storeListsRes.data.Data

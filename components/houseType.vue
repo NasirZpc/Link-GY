@@ -204,8 +204,8 @@ export default{
             loading:false,
             page : 1,
             pageSize : 10,
-            list:this.listsData.Rows,
-            listsTotal:this.listsData.Records,
+            list:this.listsData.Data,
+            listsTotal:this.listsData.RowCount,
 
             //预约房间
             pickerOptions: {
@@ -265,29 +265,27 @@ export default{
         getHouseListsFunc(){
             this.loading = true
             var params = {
-                QueryJson:{
-                    // Type: '5',//1-楼盘(小区) 2，3-楼阁 4-楼层 5-房间
-                    KeyWord : '',//关键字
-                    AreaId:this.regionVal,//区域id
-                    PropertyId:this.villageVal,//小区id
-                    RoomTypeName:'',//户型
-                    Rental:this.rentVal,//租金
-                },
-                Page:this.page,
-                Rows:this.pageSize,
+                PageIndex:this.page,
+                PageSize:this.pageSize,
+                SortName:"",
+                IsASC:true,
+                AreaId:this.regionVal,//区域id
+                KeyWord:"",
+                PropertyId:this.villageVal,//小区id
+                Rental:this.rentVal,//租金
             }
-            this.$axios.post(`/api/PStruct/GetPublishRoomType`,params).then(response => {//社区数据列表
-                switch(response.data.StatusCode){
+            this.$axios.post(`/RoomType/QueryRoomTypeList`,params).then(response => {//户型数据列表
+                switch(response.data.Status){
                     case 500 :
                         this.$message.error('房源列表请求失败'+response.Info)
                         break;
                     case 200:
-                        if(response.data.Data.Rows == '' || response.data.Data.Rows == null || response.data.Data.Rows == []){
+                        if(response.data.Data.Data == '' || response.data.Data.Data == null || response.data.Data.Data == []){
                             this.list = []
                         }else{
-                            this.list = response.data.Data.Rows
+                            this.list = response.data.Data.Data
                         }
-                        this.listsTotal = response.data.Data.Records
+                        this.listsTotal = response.data.Data.RowCount
                     break;
                 }
                 this.loading = false
@@ -328,7 +326,7 @@ export default{
                         this.disabled = false;
                         this.timer()
                         this.$refs[formName].resetFields();
-                        if(res.data.StatusCode == 200){
+                        if(res.data.Status == 200){
                             this.$message.success('预约看房成功')
                         }else{
                             this.$message.error(res.data.Info)
@@ -364,7 +362,7 @@ export default{
                 }
                 this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
                     var errorText = response.Info;
-                    switch (response.data.StatusCode) {
+                    switch (response.data.Status) {
                         case 200:
                             this.$message({
                                 type: 'success',

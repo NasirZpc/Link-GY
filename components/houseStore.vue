@@ -72,8 +72,8 @@ export default{
             page : 1,
             pageSize : 10,
             AreaId:'',
-            list:this.listsData.Rows || [],
-            listsTotal:this.listsData.Records
+            list:this.listsData.Data || [],
+            listsTotal:this.listsData.RowCount
         }
     },
     filters:{
@@ -104,27 +104,26 @@ export default{
         getVillageListsFunc(){
             this.loading = true
             var params = {
-                QueryJson:{
-                    // Type: '1',
-                    KeyWord : this.searchVal,
-                    AreaId:this.AreaId,
-                    RoomState:1,
-                },
-                Page:this.page,
-                Rows:this.pageSize,
+                PageIndex:this.page,
+                PageSize:this.pageSize,
+                SortName:"",
+                IsASC:true,
+                AreaId:this.AreaId,
+                KeyWord:this.searchVal
             }
-            this.$axios.post(`/api/PStruct/QueryToCPStruct`,params).then(response => {//社区数据列表
-                switch(response.data.StatusCode){
+            this.$axios.post(`/Property/QueryPropertyList`,params).then(response => {//社区数据列表
+                switch(response.data.Status){
                     case 500 :
                         this.$message.error('门店列表请求失败'+response.Info)
                         break;
                     case 200:
-                        if(response.data.Data.Rows == '' || response.data.Data.Rows == null || response.data.Data.Rows == []){
+                    console.log(response.data.Data)
+                        if(response.data.Data.Data == '' || response.data.Data.Data == null || response.data.Data.Data == []){
                             this.list = []
                         }else{
-                            this.list = response.data.Data.Rows
+                            this.list = response.data.Data.Data
                         }
-                        this.listsTotal = response.data.Data.Records
+                        this.listsTotal = response.data.Data.RowCount
                         break;
                 }
                 this.loading = false
