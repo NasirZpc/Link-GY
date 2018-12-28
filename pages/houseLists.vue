@@ -85,7 +85,7 @@ export default {
             for(var i =0;i<screenVillageListsRes.data.Data.Data.length;i++ ){
                 screenVillageLists_data.push({
                     villageName: screenVillageListsRes.data.Data.Data[i].Name,
-                    PStructId  : screenVillageListsRes.data.Data.Data[i].PropertyId,
+                    PStructId  : screenVillageListsRes.data.Data.Data[i].Id,
                     isActive   : false
                 })
             }

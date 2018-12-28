@@ -3,7 +3,7 @@
         <!-- banner -->
         <div v-swiper:mySwiper="swiperOption">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(item,index) in detail.ImageList" :key="index">
+                <div class="swiper-slide" v-for="(item,index) in detail.FileList" :key="index">
                     <img :src="item.Url">
                 </div>
             </div>
@@ -78,18 +78,16 @@ export default{
     },
     async asyncData({app}){
         let [detailRes,listsRes] = await Promise.all([
-            app.$axios.post(`/api/PStruct/QueryPStructDetail`,{Id:app.context.route.params.id}),//详情
-            app.$axios.post(`api/PStruct/GetPublishRoomType`,{
-				QueryJson:{
-					// Type: '5',//1-楼盘(小区) 2，3-楼阁 4-楼层 5-房间
-					KeyWord : '',//关键字
-					AreaId:'',//区域id
-					PropertyId:app.context.route.params.id,//小区id
-					RoomTypeName:'',//户型
-					Rental:'',//租金
-				},
-				Page:'1',
-				Rows:'4',
+            app.$axios.post(`/Property/QueryPropertyDetail`,{PropertyId:app.context.route.params.id}),//详情
+            app.$axios.post(`/RoomType/QueryRoomTypeList`,{
+                PageIndex:1,
+                PageSize:4,
+                SortName:"",
+                IsASC:true,
+                AreaId:'',//区域id
+                KeyWord:"",
+                PropertyId:app.context.route.params.id,//小区id
+                Rental:'',//租金
 			}),//推荐列表
         ])
         let detail = detailRes.data.Data
@@ -97,7 +95,7 @@ export default{
             lat:detail.BaseInfo.LAT,
             lng:detail.BaseInfo.LNG
         }
-        let lists = listsRes.data.Data.Rows
+        let lists = listsRes.data.Data.Data
         let num = app.context.route.query.num
         return {detail,mapData,lists,num}
     },

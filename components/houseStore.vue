@@ -9,7 +9,7 @@
             <p class="noDataText tc fs16 CRed pt40" v-show='list.length == 0'>无数据!&nbsp;&nbsp;-_-!!!</p>
             <ul class="house-store-lists">
                 <li v-for="(item,index) in list" :key="index">
-                    <nuxt-link :to="`/storeDetail/${item.PropertyId}?num=${item.RoomTypeCount}`" class="clearfix">
+                    <nuxt-link :to="`/storeDetail/${item.Id}?num=${item.RoomTypeCount}`" class="clearfix">
                         <img :src="item.MainPic " class="fl" :alt="item.FullHead">
                         <div class="fl">
                             <p class="fs20 C0">{{item.Name}}</p>
@@ -117,7 +117,6 @@ export default{
                         this.$message.error('门店列表请求失败'+response.Info)
                         break;
                     case 200:
-                    console.log(response.data.Data)
                         if(response.data.Data.Data == '' || response.data.Data.Data == null || response.data.Data.Data == []){
                             this.list = []
                         }else{

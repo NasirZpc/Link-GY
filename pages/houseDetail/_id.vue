@@ -116,7 +116,7 @@ export default{
     },
     async asyncData({app}){
         let [detailRes] = await Promise.all([
-            app.$axios.post(`/PStruct/QueryRoomTypeDetail`,{Id:app.context.route.params.id}),//详情
+            app.$axios.post(`/RoomType/QueryRoomTypeDetail`,{RoomTypeId:app.context.route.params.id}),//详情
         ])
         let detail = detailRes.data.Data
         let mapData = {
