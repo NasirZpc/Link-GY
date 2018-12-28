@@ -15,7 +15,7 @@ export default{
             }
             if (obj) {
                 const linkId =obj.linkId;
-                await app.$axios.post('/Member/QueryInfo',{//获取个人信息
+                await app.$axios.post('http://testapi.linkxinjie.com/Member/QueryInfo',{//获取个人信息
                     AccountId:obj.linkId
                 }).then(res=>{
                     commit('SET_USERINFO',res.data.StatusCode===200?qs.parse(res.data.Data):'')
