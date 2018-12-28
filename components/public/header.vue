@@ -58,13 +58,13 @@ export default {
     },
     computed : {
         getActiveIndex(){
-            console.log(this.$store.getters.activeIndex)
+            // console.log(this.$store.getters.activeIndex)
             return this.$store.getters.activeIndex
         },
     },
     watch: {
         getActiveIndex(val) {
-            console.log(val)
+            // console.log(val)
             return val
         }
     },
@@ -94,7 +94,7 @@ export default {
         }
     },
     created(){
-        console.log(this.$store.getters.activeIndex)
+        // console.log(this.$store.getters.activeIndex)
     }
 }
 </script>

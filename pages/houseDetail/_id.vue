@@ -40,14 +40,17 @@
                 </div>
             </div>
             <div class="supporting-facilities pt60">
-                <p class="C0 fs20 tit">配套设施</p>
+                <p class="C0 fs20 tit">户型介绍</p>
                 <p class="fs14 C80 pt20">{{detail.BaseInfo.Content}}</p>
-                <ul class="house-config-lists pt40 clearfix">
-                    <li class="fl" v-for="(item,index) in houseConfig" :key="index" :class="{ CRed: item.active }">
-                        <i class="iconfont" v-html="item.iconfont"></i>
-                        <h4 class="fs20">{{item.name}}</h4>
-                    </li>
-                </ul>
+                <div class="pt60">
+                    <p class="C0 fs20 tit">配套设施</p>
+                    <ul class="house-config-lists clearfix">
+                        <li class="fl" v-for="(item,index) in houseConfig" :key="index" :class="{ CRed: item.active }">
+                            <i class="iconfont" v-html="item.iconfont"></i>
+                            <h4 class="fs20">{{item.name}}</h4>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="map-around pt60">
                 <p class="C0 fs20 tit">周边地图</p>
