@@ -9,10 +9,10 @@
         <el-footer style="height:420px;">
             <my-footer/>
         </el-footer>
-        <button class="back-top" @click="backTop(step)" :class="{show:isActive}">
+        <!-- <button class="back-top" @click="backTop(step)" :class="{show:isActive}">
             <fa :icon="['fas','arrow-circle-up']" class="fs30 CRed"/>
             <span class="CRed fs16">返回顶部</span>
-        </button>
+        </button> -->
     </el-container>
 </template>
 

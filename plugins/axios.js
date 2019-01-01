@@ -15,7 +15,7 @@ function generateMixed(n){
 //axios配置
 export default function ({ $axios, redirect,app }) {
     $axios.onRequest(config => {
-        config.baseURL = 'http://testapi.linkxinjie.com'
+        // config.baseURL = 'http://testapi.linkxinjie.com'
         var Token  = '';
         try{
             var cookies = config.headers.common.cookie.split('; ');
@@ -29,11 +29,10 @@ export default function ({ $axios, redirect,app }) {
         config.headers.signature = generateMixed(32)
         config.headers.timestamp = generateMixed(32)
         config.headers.nonce = generateMixed(32)
-        // if (config.method === 'post') {
-        //     config.data = qs.stringify(config.data)
-        // }
+        if (config.method === 'post') {
+            console.log(config)
+        }
         if (process.browser) {
-
             // vm.$loading()
         }
 
@@ -47,7 +46,7 @@ export default function ({ $axios, redirect,app }) {
     })
 
     $axios.onError(error => {
-        console.log(error)
+        // console.log(error)
         const code = parseInt(error.response && error.response.status)
         if (code === 400) {
             redirect('/error')

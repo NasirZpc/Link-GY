@@ -41,7 +41,7 @@
             </div>
             <div class="supporting-facilities pt60">
                 <p class="C0 fs20 tit">户型介绍</p>
-                <p class="fs14 C80 pt20">{{detail.BaseInfo.Content}}</p>
+                <p class="fs14 C80 pt20" style="white-space:pre-wrap;">{{detail.BaseInfo.Content}}</p>
                 <div class="pt60">
                     <p class="C0 fs20 tit">配套设施</p>
                     <ul class="house-config-lists clearfix">
@@ -340,7 +340,7 @@ export default{
                         ExpectTime : this.ReservationForm.ExpectedDate,//预约时间
                         Description : this.ReservationForm.Description,//附加说明
                     }
-                    this.$axios.post(`/api/PStruct/Prospectiveapplication`,params).then(res=> {
+                    this.$axios.post(`/PStruct/Prospectiveapplication`,params).then(res=> {
                         this.btnLoading = false
                         this.dialogReservation = false
                         this.time = 0;
@@ -381,7 +381,7 @@ export default{
                     Type: 7,
                     PhoneNum: this.ReservationForm.ContactPhone
                 }
-                this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
+                this.$axios.post(`/Common/SendSMS`,params).then((response) => {
                     var errorText = response.Info;
                     switch (response.data.StatusCode) {
                         case 200:

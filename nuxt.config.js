@@ -61,22 +61,24 @@ module.exports = {
     '@nuxtjs/proxy',
     'nuxt-fontawesome'
   ],
-  // axios: {
-  //   proxy: true,
-    // prefix: '/api', // baseURL
-    // credentials: true
-  // },
+  axios: {
+    // proxy: true,
+    // prefix: '',
+    baseURL:'http://testapi.linkxinjie.com',
+    browserBaseURL:'http://testapi.linkxinjie.com',
+    credentials: false
+  },
 //   proxy: {
-//     '/api/': {
-//       target: 'http://api.linkxinjie.com', // 代理地址
+//     '/api': {
+//       target: 'http://testapi.linkxinjie.com', // 代理地址
 //       changeOrigin: true,
 //       pathRewrite: {
-//         '^/api': ''
+//         '^/api': '/'
 //       },
 //     },
 // },
   // proxy: [
-  //     ['/api', { target: 'http://api.linkxinjie.com'}]
+  //     ['/api', { target: 'http://testapi.linkxinjie.com'}]
   // ],
   /*
   ** Axios module configuration
@@ -98,9 +100,7 @@ module.exports = {
         }
       ]
   },
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
+
 
   /*
   ** Build configuration

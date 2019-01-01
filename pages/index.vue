@@ -57,7 +57,7 @@
                 <div class="swiper-pagination"></div>
             </div>
             <!-- LINK新界的合作伙伴 -->
-            <p class="fs24 bold pt100">LINK新界的合作伙伴</p>
+            <p class="fs24 bold pt100">推荐户型</p>
             <div v-swiper:mySwiper3="swiperOption3" class="pt40 index-teamwork">
                 <div class="swiper-wrapper clearfix">
                     <div class="swiper-slide bg-white" v-for="(item,index) in teamwork" :key="index">
@@ -149,8 +149,8 @@ export default {
         let [bannerRes,storeListsRes,teamworkRes,newsRes] = await Promise.all([
             app.$axios.post(`/SowingMap/QueryList`,{"QueryJson":{"Category":2}}),//轮播图
             app.$axios.post(`/PStruct/GetHotPStruct`,{Type:1,Rows:4,BusinessType:'GY'}),//门店介绍
-            app.$axios.post(`/PStruct/GetHotPStruct`,{Type:1,BusinessType:"GY",Rows:"10",ObjectId:""}),//Link新界合作伙伴
-            app.$axios.get(`/SowingMap/HomePush`),//新闻
+            app.$axios.post(`/PStruct/GetHotPStruct`,{Type:4,BusinessType:"GY",Rows:"10",ObjectId:""}),//Link新界合作伙伴
+            app.$axios.post(`/SowingMap/HomePush`,{}),//新闻
         ])
         let banners = bannerRes.data.Data
         let storeLists = storeListsRes.data.Data

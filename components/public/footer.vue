@@ -49,9 +49,9 @@
                 </ul>
             </el-col>
         </el-row>
-        <a class="C6 block tc beian-wrap pt40" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011702004666" target="view_window">
+        <a class="C6 block tc beian-wrap pt40" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=331011702004701" target="view_window">
             <img src="../../static/beian.png" class="beian-img rel">
-            <span class="inline marL10">沪公网安备 31011702004666号</span>
+            <span class="inline marL10">沪公网安备 31011702004701号</span>
         </a>
     </footer>
 </template>
