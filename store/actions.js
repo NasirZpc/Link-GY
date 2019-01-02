@@ -13,15 +13,17 @@ export default{
                     active[cookieArr[i].split('=')[0]] = cookieArr[i].split('activeIndex=')[1]
                 }
             }
-            if (obj) {
+            if (obj && obj.linkId) {
                 const linkId =obj.linkId;
                 await app.$axios.post('/Member/QueryInfo',{//获取个人信息
                     AccountId:obj.linkId
                 }).then(res=>{
                     commit('SET_USERINFO',res.data.StatusCode===200?qs.parse(res.data.Data):'')
                 })
+            }else{
+                commit('SET_USERINFO','')
             }
-            commit('SET_ACTIVEINDEX',active.activeIndex)
+            // commit('SET_ACTIVEINDEX',active.activeIndex)
         }else{
             commit('SET_USERINFO','')
         }

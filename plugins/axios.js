@@ -15,7 +15,6 @@ function generateMixed(n){
 //axios配置
 export default function ({ $axios, redirect,app }) {
     $axios.onRequest(config => {
-        // config.baseURL = 'http://testapi.linkxinjie.com'
         var Token  = '';
         try{
             var cookies = config.headers.common.cookie.split('; ');
@@ -30,7 +29,7 @@ export default function ({ $axios, redirect,app }) {
         config.headers.timestamp = generateMixed(32)
         config.headers.nonce = generateMixed(32)
         if (config.method === 'post') {
-            console.log(config)
+            // console.log(config)
         }
         if (process.browser) {
             // vm.$loading()
