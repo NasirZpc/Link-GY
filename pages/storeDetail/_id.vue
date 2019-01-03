@@ -29,7 +29,7 @@
                         <fa :icon="['fas','home']" class="mr10 C9"/>
                         <span>房间总数{{detail.BaseInfo.RentableRoomNums}}间</span>
                     </p>
-                    <p class="fr C80 fs16">总共<span class="CRed fs22">{{num}}</span>个户型可供预约</p>
+                    <p class="fr C80 fs16">总共<span class="CRed fs22">{{detail.BaseInfo.Count}}</span>个户型可供预约</p>
                 </div>
                 <p class="fs14 C80 pt20">{{detail.BaseInfo.Memo}}</p>
             </div>
@@ -96,8 +96,7 @@ export default{
             lng:detail.BaseInfo.LNG
         }
         let lists = listsRes.data.Data.Data
-        let num = app.context.route.query.num
-        return {detail,mapData,lists,num}
+        return {detail,mapData,lists}
     },
     data(){
         return {
@@ -113,7 +112,6 @@ export default{
             },
             mapData:{},
             lists:[],
-            num:0,
         }
     }
 }

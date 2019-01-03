@@ -45,7 +45,7 @@
             <div v-swiper:mySwiper2="swiperOption2" class="pt40 store-introduct">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
-                        <nuxt-link :to="`/storeDetail/${item.Id}?num=${item.RoomTypeCount}`">
+                        <nuxt-link :to="`/storeDetail/${item.Id}`">
                             <img :src="item.MainPic">
                             <div class="tc">
                                 <p class="C0 fs20">{{item.AllName}}</p>
