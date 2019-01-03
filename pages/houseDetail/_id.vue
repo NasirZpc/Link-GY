@@ -348,7 +348,7 @@ export default{
                         this.disabled = false;
                         this.timer()
                         this.$refs[formName].resetFields();
-                        if(res.data.StatusCode == 200){
+                        if(res.data.Status == 200){
                             this.$message.success('预约看房成功')
                         }else{
                             this.$message.error(res.data.Info)
@@ -383,7 +383,7 @@ export default{
                 }
                 this.$axios.post(`/Common/SendSMS`,params).then((response) => {
                     var errorText = response.Info;
-                    switch (response.data.StatusCode) {
+                    switch (response.data.Status) {
                         case 200:
                             this.$message({
                                 type: 'success',
