@@ -318,7 +318,7 @@ export default{
                         ExpectTime : this.ReservationForm.ExpectedDate,//预约时间
                         Description : this.ReservationForm.Description,//附加说明
                     }
-                    this.$axios.post(`/api/PStruct/Prospectiveapplication`,params).then(res=> {
+                    this.$axios.post(`/PStruct/Prospectiveapplication`,params).then(res=> {
                         this.btnLoading = false
                         this.dialogReservation = false
                         this.time = 0;
@@ -360,7 +360,7 @@ export default{
                     Type: 7,
                     PhoneNum: this.ReservationForm.ContactPhone
                 }
-                this.$axios.post(`/api/Common/SendSMS`,params).then((response) => {
+                this.$axios.post(`/Common/SendSMS`,params).then((response) => {
                     var errorText = response.Info;
                     switch (response.data.Status) {
                         case 200:

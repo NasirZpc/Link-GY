@@ -64,8 +64,8 @@ module.exports = {
   axios: {
     // proxy: true,
     // prefix: '',
-    baseURL:'http://testapi.linkxinjie.com',
-    browserBaseURL:'http://testapi.linkxinjie.com',
+    baseURL:'http://api.linkxinjie.com',
+    browserBaseURL:'http://api.linkxinjie.com',
     credentials: false
   },
 //   proxy: {
