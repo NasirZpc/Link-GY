@@ -172,7 +172,7 @@ export default{
             rentScreen:[
                 {
                     name:'全部',
-                    Rental:''
+                    Rental:'-1'
                 },{
                     name:'1000元以下',
                     Rental:'a'

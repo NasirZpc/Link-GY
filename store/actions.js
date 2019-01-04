@@ -4,13 +4,17 @@ export default{
         if(req.headers.cookie){
             var cookieArr = req.headers.cookie.split("; ")
             var obj = {},
-                active = {};
+                active = {},
+                house = {};
             for(var i=0;i<cookieArr.length;i++){
                 if(cookieArr[i].split('=')[0] == 'linkId'){//获取账户id
                     obj[cookieArr[i].split('=')[0]] = cookieArr[i].split('linkId=')[1]
                 }
                 if(cookieArr[i].split('=')[0] == 'activeIndex'){
                     active[cookieArr[i].split('=')[0]] = cookieArr[i].split('activeIndex=')[1]
+                }
+                if(cookieArr[i].split('=')[0] == 'houseActive'){
+                    house[cookieArr[i].split('=')[0]] = cookieArr[i].split('houseActive=')[1]
                 }
             }
             if (obj && obj.linkId) {
@@ -24,6 +28,7 @@ export default{
                 commit('SET_USERINFO','')
             }
             commit('SET_ACTIVEINDEX',active.activeIndex)
+            commit('SET_HOUSEACTIVE',house.houseActive)
         }else{
             commit('SET_USERINFO','')
         }
@@ -31,5 +36,8 @@ export default{
     },
     SET_ACTIVEINDEX({commit},activeIndex){
         commit('SET_ACTIVEINDEX',activeIndex)
+    },
+    SET_HOUSEACTIVE({commit},houseActive){
+        commit('SET_HOUSEACTIVE',houseActive)
     },
 }

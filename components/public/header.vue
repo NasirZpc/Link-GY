@@ -93,10 +93,8 @@ export default {
             });
         }
     },
-    created(){},
-    //请求个人数据，确认登录
-    async mounted(){
-        console.log(this.$cookies.get('linkId'))
+    async created(){
+        //请求个人数据，确认登录
         if(this.$cookies.get('linkId')){
             await this.$axios.post('/Member/QueryInfo',{//获取个人信息
                 AccountId:this.$cookies.get('linkId')
@@ -104,7 +102,7 @@ export default {
                 this.$store.commit('SET_USERINFO',res.data.Data)
             })
         }
-    }
+    },
 }
 </script>
 <style lang="scss">

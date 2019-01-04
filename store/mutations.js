@@ -5,4 +5,7 @@ export default {
     SET_ACTIVEINDEX:(state,val)=>{
         state.activeIndex = val
     },
+    SET_HOUSEACTIVE:(state,val)=>{
+        state.houseActive = val
+    },
 }

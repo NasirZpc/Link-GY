@@ -1,12 +1,12 @@
 <template>
     <section class="houseLists-wrap pt60 wrapper2" ref="houseListsPage">
         <ul class="clearfix tab fs16 C0 bold pt60">
-            <li class="fl pointer" :class="{active:isActive}" @click="houseListTap(1)">社区</li>
-            <li class="fl pointer" :class="{active:!isActive}" @click="houseListTap(2)">户型</li>
+            <li class="fl pointer" :class="{active:isActive == 1}" @click="houseListTap(1)">社区</li>
+            <li class="fl pointer" :class="{active:isActive == 2}" @click="houseListTap(2)">户型</li>
         </ul>
         <div class="pt40 pb40">
-            <house-store v-if="isActive" :screen-data="regionScreen" :lists-data="villageLists" :search-val="searchVal"/>
-            <house-type v-else :region-screen="regionScreen" :village-screen="screenVillageLists" :lists-data="houseTypeLists" :village-id="villageId"/>
+            <house-store v-if="isActive == 1" :screen-data="regionScreen" :lists-data="villageLists" :search-val="searchVal"/>
+            <house-type  v-if="isActive == 2" :region-screen="regionScreen" :village-screen="screenVillageLists" :lists-data="houseTypeLists" :village-id="villageId"/>
         </div>
     </section>
 </template>
@@ -38,15 +38,15 @@ export default {
     },
     async asyncData ({app}) {
         var villageId = ''
-        var isActive = true
+        var isActive = app.context.store.getters.houseActive
         var searchVal = ''
         if(app.context.route.query.id){
             villageId = app.context.route.query.id;
-            isActive = false
+            isActive = 2
         }
         if(app.context.route.query.search){
             searchVal = app.context.route.query.search
-            isActive =true
+            isActive =1
         }
         let [screenVillageListsRes,villageListsRes,regionScreenRes,houseTypeListsRes] = await Promise.all([
                 app.$axios.post(`/Property/QueryPropertyList`,{
@@ -110,7 +110,9 @@ export default {
     },
     methods:{
         houseListTap(idx){
-            idx==1? this.isActive = true : this.isActive = false
+            idx==1? this.isActive = 1 : this.isActive = 2
+            this.$store.commit('SET_HOUSEACTIVE',idx)
+            this.$cookies.set('houseActive',idx)
         },
     },
     mounted(){

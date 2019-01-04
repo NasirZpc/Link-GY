@@ -6,6 +6,7 @@ import actions from './actions'
 const state = {
     userinfo : '',
     activeIndex:'0',
+    houseActive:1,
 }
 
 export default () => {
