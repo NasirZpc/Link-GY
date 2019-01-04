@@ -31,6 +31,7 @@ export default{
         }
     },
     async asyncData ({app}) {
+        app.store.dispatch('SET_ACTIVEINDEX', '3');
         let [detailRes] = await Promise.all([
                 app.$axios.post(`/SowingMap/QueryInfo`,{
         			QueryJson:{

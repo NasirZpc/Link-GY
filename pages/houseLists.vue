@@ -37,6 +37,7 @@ export default {
         }
     },
     async asyncData ({app}) {
+        app.store.dispatch('SET_ACTIVEINDEX', '1');
         var villageId = ''
         var isActive = app.context.store.getters.houseActive
         var searchVal = ''

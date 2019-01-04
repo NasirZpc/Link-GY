@@ -27,6 +27,9 @@ export default{
             title: "个人中心"
         }
     },
+    async asyncData ({app}) {
+        app.store.dispatch('SET_ACTIVEINDEX', '3');
+    },
     data(){
         return {}
     },
