@@ -331,16 +331,15 @@ export default{
                         AccountId = this.$store.getters.userinfo.AccountId
                     }
                     var params = {
-                        Type :Type,
-                        AccountId : AccountId,
-                        Category : '2',
-                        RoomId : this.houseId,
-                        ContactName : this.ReservationForm.ContactName,//联系人姓名
-                        ContactPhone : this.ReservationForm.ContactPhone,//手机号码
-                        ExpectTime : this.ReservationForm.ExpectedDate,//预约时间
-                        Description : this.ReservationForm.Description,//附加说明
+                        MemberId :AccountId,
+        				Phone : this.ReservationForm.ContactPhone,//手机号码
+        				Name : this.ReservationForm.ContactName,//联系人姓名
+        				SourceType:1,    //单据来源 1-PC端 2-APP端 3-C端网站 4-公众号
+        				ObjectId : this.houseId,
+        				Date : this.ReservationForm.ExpectedDate,//预约时间
+        				Description : this.ReservationForm.Description,//附加说明
                     }
-                    this.$axios.post(`/PStruct/Prospectiveapplication`,params).then(res=> {
+                    this.$axios.post(`/SearchRoomBill/CreateSearchRoomBill`,params).then(res=> {
                         this.btnLoading = false
                         this.dialogReservation = false
                         this.time = 0;
