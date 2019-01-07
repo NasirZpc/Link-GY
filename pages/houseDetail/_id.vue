@@ -465,7 +465,7 @@ export default{
 .swiper-baseInfo{
     .banner-wrap {
         width:720px;
-        height:400px;
+        height:540px;
         margin-right: 40px;
         .swiper-slide {
             background-size: cover;
@@ -498,7 +498,7 @@ export default{
     }
     .base-info{
         width:355px;
-        height:400px;
+        height:475px;
         .btn-wrap{
             top:auto!important;
             bottom:40px!important;
