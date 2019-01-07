@@ -465,7 +465,7 @@ export default{
 .swiper-baseInfo{
     .banner-wrap {
         width:720px;
-        height:460px;
+        height:400px;
         margin-right: 40px;
         .swiper-slide {
             background-size: cover;
@@ -480,7 +480,7 @@ export default{
             width: 100%;
         }
         .gallery-thumbs {
-            height: 30%!important;
+            height: 24%!important;
             box-sizing: border-box;
             padding: 10px 0;
         }
@@ -500,8 +500,8 @@ export default{
         width:355px;
         height:400px;
         .btn-wrap{
-            top:auto;
-            bottom:40px;
+            top:auto!important;
+            bottom:40px!important;
             button:nth-of-type(1){
                 margin-right:20px;
             }
