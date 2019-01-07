@@ -93,7 +93,7 @@ export default {
             });
         }
     },
-    async created(){
+    async mounted(){
         //请求个人数据，确认登录
         if(this.$cookies.get('linkId')){
             await this.$axios.post('/Member/QueryInfo',{//获取个人信息

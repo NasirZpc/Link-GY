@@ -1,42 +1,55 @@
 <template>
-    <div class="store-detail pb100">
-        <!-- banner -->
-        <div v-swiper:mySwiper="swiperOption">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(item,index) in detail.Imagelist" :key="index">
-                    <img :src="item.Url">
-                </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
+    <div class="store-detail pb100 pt100">
         <div class="wrapper2 pt40">
-            <div class="base-info rel">
-                <p class="C0 fs20 tit">
-                    <span class="inline-b mr10">{{detail.BaseInfo.BName}}</span>
-                    <span>{{detail.BaseInfo.Name}}</span>
-                </p>
-                <div class="clearfix">
-                    <p class="fl C80 fs14 pt15">
-                        <i class="el-icon-location-outline mr10"></i>
-                        <span>{{detail.BaseInfo.RegionName}}{{detail.BaseInfo.Address}}</span>
-                    </p>
+            <div class="clearfix swiper-baseInfo">
+                <!-- banner -->
+                <div class="fl banner-wrap">
+                    <div v-swiper:mySwiper1="swiperOptionTop" class="gallery-top" ref="swiperTop">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="(item,index) in detail.Imagelist" :key="index">
+                                <img :src="item.Url">
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div v-swiper:mySwiper2="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="(item,index) in detail.Imagelist" :key="index">
+                                <img :src="item.Url">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="clearfix">
-                    <p class="fl C80 fs14 pt10">
-                        <fa :icon="['fab','gg']" class="mr10"/>
-                        <span>{{detail.BaseInfo.Area}}m²</span>
+                <div class="base-info rel fr">
+                    <p class="C0 fs20 tit">
+                        <span class="inline-b mr10">{{detail.BaseInfo.BName}}</span>
+                        <span>{{detail.BaseInfo.Name}}</span>
                     </p>
-                </div>
-                <p class="C80 fs16 pt10">
-                    <fa :icon="['fas','phone']" class="mr10 C9" style="transform:rotate(90deg);"/>
-                    <span>400-999-9719</span>
-                </p>
-                <div class="btn-wrap abs tr">
-                    <p class="CRed fs20">¥{{detail.BaseInfo.MinPrice}}元/月起</p>
-                    <el-button class="block" type="primary" @click="dialogReservation = true">预约看房</el-button>
-                    <el-button class="block" type="primary" plain @click="dialogOnline = true">在线预定</el-button>
+                    <div class="clearfix">
+                        <p class="fl C80 fs14 pt15">
+                            <i class="el-icon-location-outline mr10"></i>
+                            <span>{{detail.BaseInfo.RegionName}}{{detail.BaseInfo.Address}}</span>
+                        </p>
+                    </div>
+                    <div class="clearfix">
+                        <p class="fl C80 fs14 pt10">
+                            <fa :icon="['fab','gg']" class="mr10"/>
+                            <span>{{detail.BaseInfo.Area}}m²</span>
+                        </p>
+                    </div>
+                    <p class="C80 fs16 pt10">
+                        <fa :icon="['fas','phone']" class="mr10 C9" style="transform:rotate(90deg);"/>
+                        <span>400-999-9719</span>
+                    </p>
+                    <div class="btn-wrap tr abs">
+                        <p class="CRed fs20 pb40">¥{{detail.BaseInfo.MinPrice}}元/月起</p>
+                        <div class="clearfix">
+                            <el-button class="mr20" type="primary" @click="dialogReservation = true">预约看房</el-button>
+                            <el-button class="" type="primary" plain @click="dialogOnline = true">在线预定</el-button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="supporting-facilities pt60">
@@ -270,14 +283,19 @@ export default{
             },
             houseId:'',
             detail:[],
-            swiperOption: {
+            swiperOptionTop: {
+                spaceBetween: 10,
                 navigation: {
                     nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                },
+                    prevEl: '.swiper-button-prev'
+                }
+            },
+            swiperOptionThumbs: {
+                spaceBetween: 10,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                touchRatio: 0.2,
+                slideToClickedSlide: true
             },
             mapData:{},
             //配套设施
@@ -430,11 +448,66 @@ export default{
             this.$refs[formName].resetFields();
             this.dialogReservation = false
         },
+    },
+    mounted(){
+        this.$nextTick(() => {
+            const swiperTop = this.$refs.swiperTop.swiper
+            const swiperThumbs = this.$refs.swiperThumbs.swiper
+            swiperTop.controller.control = swiperThumbs
+            swiperThumbs.controller.control = swiperTop
+        })
     }
 }
 </script>
 <style lang="scss">
 @import "@/assets/css/houseDetail.scss";
+/*banner&base-info*/
+.swiper-baseInfo{
+    .banner-wrap {
+        width:720px;
+        height:460px;
+        margin-right: 40px;
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+            img{
+                width:100%;
+                height:100%;
+            }
+        }
+        .gallery-top {
+            height: 80%!important;
+            width: 100%;
+        }
+        .gallery-thumbs {
+            height: 30%!important;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+        .gallery-thumbs .swiper-slide {
+            width: 25%!important;
+            height: 100%;
+            opacity: 0.4;
+            img{
+                height:100%;
+            }
+        }
+        .gallery-thumbs .swiper-slide-active {
+            opacity: 1;
+        }
+    }
+    .base-info{
+        width:355px;
+        height:400px;
+        .btn-wrap{
+            top:auto;
+            bottom:40px;
+            button:nth-of-type(1){
+                margin-right:20px;
+            }
+        }
+    }
+}
 //配置icon
 /*icon*/
 @font-face {font-family: "iconfont";
