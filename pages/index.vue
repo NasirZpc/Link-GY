@@ -41,7 +41,7 @@
                 <img class="fr" src="../static/img1.png">
             </div>
             <!-- 门店介绍 -->
-            <p class="fs24 bold pt100">门店介绍</p>
+            <p class="fs24 bold pt100">推荐门店</p>
             <div v-swiper:mySwiper2="swiperOption2" class="pt40 store-introduct">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
