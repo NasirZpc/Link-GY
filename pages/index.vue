@@ -35,13 +35,12 @@
             <p class="fs24 bold">LINK新界</p>
             <div class="clearfix index-introduct">
                 <div class="fl C80 fs16 pt40">
-                    <p>派米雷集团打造的长租公寓品牌，以“创享新生活”为愿景，以“工作+生活”为理念，是集线上“LINK新界租房平台”和线下“LINK新界生活社区”于一体的长租公寓综合服务商。</p>
-                    <p class="pt20">“LINK新界租房平台”打通房源端和租客端，让租房更便捷和高效，同时集联合办公和共享空间，融创业、居住、社交、共享四大场景于一体，给有梦想不断追求的人一个温馨的家——梦在哪，家就在哪。</p>
+                    <p>“LINK新界”是派米雷集团打造的长租公寓品牌，是集线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“工作+生活”为理念，融创业、居住、社交、共享四大场景于一体，给追梦人一个温馨的家——梦在哪，家就在哪。</p>
                 </div>
                 <img class="fr" src="../static/img1.png">
             </div>
             <!-- 门店介绍 -->
-            <p class="fs24 bold pt100">推荐门店</p>
+            <p class="fs24 bold pt100">推荐项目</p>
             <div v-swiper:mySwiper2="swiperOption2" class="pt40 store-introduct">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
@@ -64,7 +63,7 @@
                         <nuxt-link :to="`/houseDetail/${item.Id}`">
                             <img :src="item.MainPic">
                             <div class="tc">
-                                <p class="C0 fs20">{{item.Name}}{{item.PropertyName}}</p>
+                                <p class="C0 fs20">{{item.Name}}&nbsp;&nbsp;&nbsp;{{item.PropertyName}}</p>
                                 <p class="fs14 C9c pt10">{{item.TownshipName}}{{item.PropertyAddress}}</p>
                             </div>
                         </nuxt-link>
