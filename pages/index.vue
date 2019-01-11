@@ -63,7 +63,7 @@
                         <nuxt-link :to="`/houseDetail/${item.Id}`">
                             <img :src="item.MainPic">
                             <div class="tc">
-                                <p class="C0 fs20">{{item.Name}}&nbsp;&nbsp;&nbsp;{{item.PropertyName}}</p>
+                                <p class="C0 fs20">{{item.PropertyName}}&nbsp;&nbsp;&nbsp;{{item.Name}}</p>
                                 <p class="fs14 C9c pt10">{{item.TownshipName}}{{item.PropertyAddress}}</p>
                             </div>
                         </nuxt-link>
