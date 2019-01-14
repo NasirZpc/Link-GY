@@ -68,10 +68,7 @@ export default{
         return {
             detail:''
         }
-    },
-    mounted(){
-
-    },
+    }
 }
 </script>
 <style lang="scss" scoped>
