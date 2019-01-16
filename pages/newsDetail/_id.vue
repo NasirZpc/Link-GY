@@ -1,7 +1,10 @@
 <template>
     <div class="pt60 wrapper newsDetail">
         <p class="pt60 fs22 C0">{{detail.FullHead}}</p>
-        <p class="pt10 fs14 C80">{{detail.CreateDate}}</p>
+        <div class="clearfix">
+            <p class="pt10 fs14 C80 fl">{{detail.CreateDate}}</p>
+            <p class="fr CRed"><fa :icon="isShowPW" class="CRed pointer mr10"  />{{detail.PV}}</p>
+        </div>
         <div class="pt40 pb40 C3 fs16 news-detail-cont" v-html="detail.NewsContent"></div>
     </div>
 </template>
@@ -26,7 +29,8 @@ export default{
     },
     data(){
         return {
-            detail:''
+            detail:'',
+            isShowPW:['fas','eye'],
         }
     },
     mounted(){
