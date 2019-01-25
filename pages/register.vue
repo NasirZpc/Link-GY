@@ -48,9 +48,9 @@
             				<el-checkbox v-model="registerForm2.type" label="agree" @change="handType()">
             					我已经阅读并同意
             				</el-checkbox>
-            				<a class="linkBtn CRed" style="padding:0px;float: inherit;cursor:pointer;">
+            				<span class="linkBtn CRed" style="padding:0px;float: inherit;cursor:pointer;" @click="dialogVisible = true">
             					《用户注册协议》
-            				</a>
+            				</span>
             				<div class="tishixiaoxi" v-show="this.showCheckbox">请接受我们的声明</div>
             			</el-form-item>
 
@@ -59,17 +59,24 @@
             	</el-card>
             </div>
         </el-main>
+        <el-dialog title="注册协议" :visible.sync="dialogVisible" width="70%">
+            <Agreement />
+        </el-dialog>
     </el-container>
 </template>
 <script>
 var code; //在全局定义验证码
 import CryptoJS from 'crypto-js'
+import Agreement from '@/components/agreement.vue'
 export default {
     layout: 'blank',
     head() {
         return {
             title: '注册'
         }
+    },
+    components: {
+        Agreement
     },
     data() {
 		var validateRealName = (rule, value, callback) => {
@@ -143,6 +150,7 @@ export default {
 			}
 		};
 		return {
+            dialogVisible:false,
             isShowPW:['fas','eye-slash'],
             isShowPW2:['fas','eye-slash'],
 			card1: true,
