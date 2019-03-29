@@ -2,68 +2,68 @@ const pkg = require('./package')
 const axios = require('axios')
 
 module.exports = {
-    generate: {
-        fallback:'index.html',
-        routes: function (callback) {
-            axios.all([
-                axios.post(`http://api.linkxinjie.com/SowingMap/QueryPageList`,{//新闻
-                    Page:1,
-                    Rows:10,
-                    QueryJson:{
-                        "Type":1
-                    }
-                }),
-                axios.post(`http://api.linkxinjie.com/Property/QueryPropertyList`,{//门店
-                    PageIndex:1,
-                    PageSize:10000,
-                    SortName:"",
-                    IsASC:true,
-                    AreaId:'',
-                    KeyWord:''
-                }),
-                axios.post(`http://api.linkxinjie.com/RoomType/QueryRoomTypeList`,{//户型
-                    PageIndex:1,
-                    PageSize:100000,
-                    SortName:"",
-                    IsASC:true,
-                    AreaId:'',//区域id
-                    KeyWord:"",
-                    PropertyId:'',//小区id
-                    Rental:'',//租金
-                }),
-            ]).then(axios.spread(function (res0,res1,res2) {
-                // console.log(res0.data.Data.Rows)
-                // console.log(res1.data.Data.Data)
-                // console.log(res2.data.Data.Data)
-                var routes = []
-                var routes0 = res0.data.Data.Rows.map((item) => {
-                    return '/newsDetail/' + item.Id
-                })
-                var routes1 = res1.data.Data.Data.map((item) => {
-                    return '/storeDetail/' + item.Id
-                })
-                var routes2 = res2.data.Data.Data.map((item) => {
-                    return '/houseDetail/' + item.Id
-                })
-                for(var i=0;i<routes0.length;i++){
-                    routes.push(routes0[i])
-                }
-                for(var i=0;i<routes1.length;i++){
-                    routes.push(routes1[i])
-                }
-                for(var i=0;i<routes2.length;i++){
-                    routes.push(routes2[i])
-                }
-                console.log(routes)
-                callback(null, routes)
-            })).catch(callback);
-        },
-    },
+    // generate: {
+    //     fallback:'index.html',
+    //     routes: function (callback) {
+    //         axios.all([
+    //             axios.post(`http://api.linkxinjie.com/SowingMap/QueryPageList`,{//新闻
+    //                 Page:1,
+    //                 Rows:10,
+    //                 QueryJson:{
+    //                     "Type":1
+    //                 }
+    //             }),
+    //             axios.post(`http://api.linkxinjie.com/Property/QueryPropertyList`,{//门店
+    //                 PageIndex:1,
+    //                 PageSize:10000,
+    //                 SortName:"",
+    //                 IsASC:true,
+    //                 AreaId:'',
+    //                 KeyWord:''
+    //             }),
+    //             axios.post(`http://api.linkxinjie.com/RoomType/QueryRoomTypeList`,{//户型
+    //                 PageIndex:1,
+    //                 PageSize:100000,
+    //                 SortName:"",
+    //                 IsASC:true,
+    //                 AreaId:'',//区域id
+    //                 KeyWord:"",
+    //                 PropertyId:'',//小区id
+    //                 Rental:'',//租金
+    //             }),
+    //         ]).then(axios.spread(function (res0,res1,res2) {
+    //             // console.log(res0.data.Data.Rows)
+    //             // console.log(res1.data.Data.Data)
+    //             // console.log(res2.data.Data.Data)
+    //             var routes = []
+    //             var routes0 = res0.data.Data.Rows.map((item) => {
+    //                 return '/newsDetail/' + item.Id
+    //             })
+    //             var routes1 = res1.data.Data.Data.map((item) => {
+    //                 return '/storeDetail/' + item.Id
+    //             })
+    //             var routes2 = res2.data.Data.Data.map((item) => {
+    //                 return '/houseDetail/' + item.Id
+    //             })
+    //             for(var i=0;i<routes0.length;i++){
+    //                 routes.push(routes0[i])
+    //             }
+    //             for(var i=0;i<routes1.length;i++){
+    //                 routes.push(routes1[i])
+    //             }
+    //             for(var i=0;i<routes2.length;i++){
+    //                 routes.push(routes2[i])
+    //             }
+    //             callback(null, routes)
+    //         })).catch(callback);
+    //     },
+    // },
     server: {
         port: 3000, // default: 3000
         host: '0.0.0.0', // default: localhost
     },
-  mode: 'universal',
+  // mode: 'universal',
+  mode: 'spa',
 
   /*
   ** Headers of the page
