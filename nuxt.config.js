@@ -69,7 +69,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Link新界公寓',
+    title: '派米雷LINK新界',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
