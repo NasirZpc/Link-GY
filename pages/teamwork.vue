@@ -27,7 +27,7 @@
 export default{
     head() {
         return {
-            title: "合作联系"
+            title: "LINK新界-合作联系"
         }
     },
     async asyncData ({app}) {

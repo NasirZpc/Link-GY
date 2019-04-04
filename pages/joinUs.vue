@@ -12,7 +12,7 @@
 export default{
     head() {
         return {
-            title: "加入我们"
+            title: "LINK新界-加入我们"
         }
     },
     async asyncData ({app}) {

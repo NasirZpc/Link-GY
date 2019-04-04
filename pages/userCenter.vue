@@ -24,7 +24,7 @@ export default{
     middleware:'auth',
     head() {
         return {
-            title: "个人中心"
+            title: "LINK新界-个人中心"
         }
     },
     async asyncData ({app}) {

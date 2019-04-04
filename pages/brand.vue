@@ -48,7 +48,7 @@
 export default{
     head() {
         return {
-            title: "品牌介绍"
+            title: "LINK新界-品牌介绍"
         }
     },
     async asyncData ({app}) {
