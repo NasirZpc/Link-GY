@@ -27,7 +27,7 @@
 export default{
     head() {
         return {
-            title: "link新界-新闻列表"
+            title: "新闻列表"
         }
     },
     async asyncData ({app}) {

@@ -20,7 +20,7 @@ export default {
     },
     head() {
         return {
-            title: "link新界-房源列表"
+            title: "房源列表"
         }
     },
     data(){
