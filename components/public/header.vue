@@ -53,6 +53,12 @@
 </template>
 <script>
 export default {
+    // head() {
+    //     return {
+    //         script: [{ innerHTML: require('../../assets/js/baidukuaizhao'), type: 'text/javascript', charset: 'utf-8'}],
+    //         __dangerouslyDisableSanitizers: ['script']
+    //     }
+    // },
     data(){
         return {}
     },
