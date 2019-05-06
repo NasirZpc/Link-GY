@@ -45,7 +45,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="(item,index) in storeLists" :key="index">
                         <nuxt-link :to="`/storeDetail/${item.Id}`">
-                            <img :src="item.MainPic">
+                            <img :src="item.MainPic" style="height:168.75px;">
                             <div class="tc">
                                 <p class="C0 fs20">{{item.AllName}}</p>
                                 <p class="fs14 C9c pt10">{{item.TownshipName}}</p>
