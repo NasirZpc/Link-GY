@@ -73,7 +73,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '“LINK新界”是派米雷集团旗下上海青邻公寓管理有限公司的长租公寓品牌，集线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“绿色、开放、共享、智慧”为理念，融创业、居住、社交功能多元化的社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。' }
+      { hid: 'description', name: 'description', content: '“LINK新界”是派米雷集团旗下上海青邻公寓管理有限公司的租赁住宅品牌，集线上“租房平台”和线下“租赁社区”于一体的租赁住宅综合服务商。以“创享新生活”为愿景，“绿色、开放、共享、智慧”为理念，融创业、居住、社交功能多元化的社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }
