@@ -149,7 +149,13 @@ export default {
             app.$axios.post(`/SowingMap/QueryList`,{"QueryJson":{"Category":2}}),//轮播图
             app.$axios.post(`/PStruct/GetHotPStruct`,{Type:1,Rows:4,BusinessType:'GY'}),//门店介绍
             app.$axios.post(`/PStruct/GetHotPStruct`,{Type:4,BusinessType:"GY",Rows:"10",ObjectId:""}),//Link新界合作伙伴
-            app.$axios.post(`/SowingMap/HomePush`,{}),//新闻
+            app.$axios.post(`/SowingMap/QueryPageList`,{
+                Page:1,
+                Rows:3,
+                QueryJson:{
+                    "Type":1
+                }
+            }),//新闻
         ])
         let banners = bannerRes.data.Data
         let storeLists = storeListsRes.data.Data
