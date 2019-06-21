@@ -29,7 +29,7 @@
                         <nuxt-link to="/joinUs">加入我们</nuxt-link>
                     </el-menu-item>
                 </el-submenu>
-                <el-submenu index="4" v-if="$store.state.userinfo">
+                <el-submenu index="4" v-if="$store.state.userinfo" style="max-width:190px;">
                     <template slot="title" class="second-nav">您好，{{$store.state.userinfo.Name}}</template>
                     <el-menu-item index="4-1">
                         <nuxt-link to="/userCenter">个人中心</nuxt-link>

@@ -296,7 +296,7 @@ export default{
     mounted(){
         setTimeout(() => {
 			this.creatChangeMap(0);
-		}, 1000)
+		}, 1200)
     }
 }
 </script>
