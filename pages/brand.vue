@@ -7,13 +7,13 @@
         </div>
         <div class="wrapper2">
             <p class="fs20 C0 tc pt100">{{detail.FullHead}}</p>
-            <div class="pt40 C3 fs16" v-html="detail.NewsContent"></div>
-
+            <!-- <div class="pt40 C3 fs16" v-html="detail.NewsContent"></div> -->
+            <div class="pt40 C3 fs16" style="text-indent: 2em;">“LINK新界”是派米雷集团旗下长租公寓品牌，集投资开发、运营管理，线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“工作+生活“为理念，打造“绿色、开放、共享、智慧”的未来社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。</div>
             <div class="brand-section-1 pt60">
                 <p class="brand-tit C0 fs20 rel">派米雷集团</p>
                 <div class="clearfix pt60 rel">
                     <img class="fl" src="../static/brand-1.png">
-                    <p class="fs14 CF fl brand-section-1-cont abs">上海派米雷投资（集团）有限公司是一家综合性投资集团公司，主要以产业园区、城市更新、长租公寓的投资运营为核心，提供城市有机更新和产城融合发展一体化运营解决方案。随着中国经济发展新常态和城市发展新路径，派米雷立足上海，布局全国，助力经济转型升级、城市创新发展。</p>
+                    <p class="fs14 CF fl brand-section-1-cont abs">上海派米雷投资（集团）有限公司是一家综合性投资集团公司，创始于2002年。目前主要以产业园区、城市更新、长租公寓的投资运营为核心业务，提供城市有机更新和产城融合发展一体化运营解决方案。在不断发展中，派米雷集团始终秉承“让城市更美好”的企业使命，立足上海，布局全国，致力于成为卓越的城市服务商，打造百年基业的民族品牌。</p>
                 </div>
             </div>
             <ul class="clearfix pb40 brand-section-2 pt100">
@@ -29,7 +29,7 @@
                 </li>
                 <li class="fl">
                     <p class="brand-tit tc C0 fs20 rel">长租公寓</p>
-                    <p class="C80 fs14 pt40 brand-section-2-cont">派米雷集团积极响应“租售同权，租购并举”的国家战略，打造旗下长租公寓品牌“LINK新界”。其是集线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“绿色、开放、共享、智慧”为理念，融创业、居住、社交功能多元化的社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。</p>
+                    <p class="C80 fs14 pt40 brand-section-2-cont">派米雷集团积极响应“租售同权，租购并举”的国家战略，打造旗下长租公寓品牌“LINK新界”。集投资开发、运营管理，线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“工作+生活“为理念，打造“绿色、开放、共享、智慧”的未来社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。</p>
                     <img src="../static/brand-4.png">
                 </li>
             </ul>
