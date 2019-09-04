@@ -35,7 +35,8 @@
             <p class="fs24 bold">LINK新界</p>
             <div class="clearfix index-introduct">
                 <div class="fl C80 fs16 pt40">
-                    <p>“LINK新界”是派米雷集团旗下长租公寓品牌，集投资开发、运营管理，线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“工作+生活“为理念，打造“绿色、开放、共享、智慧”的未来社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。</p>
+                    <!-- <p>“LINK新界”是派米雷集团旗下长租公寓品牌，集投资开发、运营管理，线上“租房平台”和线下“租赁社区”于一体的长租公寓综合服务商。以“创享新生活”为愿景，“工作+生活“为理念，打造“绿色、开放、共享、智慧”的未来社区。给追梦的你，一个温馨的家——梦在哪，家就在哪。</p> -->
+                    <p>{{indeText}}</p>
                 </div>
                 <img class="fr" src="../static/img1.png">
             </div>
@@ -141,7 +142,8 @@ export default {
                 autoplay: true,
                 // loop:true
             },
-            news:[]
+            news:[],
+            indeText:'',
         }
     },
     async asyncData ({app}) {
@@ -184,6 +186,9 @@ export default {
             var re = new RegExp(regu);
             return re.test(str);
         },
+    },
+    created(){
+        this.indeText=window.text.index
     }
 }
 </script>

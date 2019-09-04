@@ -64,6 +64,9 @@ module.exports = {
     },
   // mode: 'universal',
   mode: 'spa',
+  env: {
+    BASE_URL: 'http://api.linkxinjie.com',
+  },
 
   /*
   ** Headers of the page
